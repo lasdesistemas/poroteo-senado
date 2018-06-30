@@ -5,9 +5,8 @@ export default class extends React.Component {
 
     constructor(props) {
       super(props)
-      this.state = {
-
-      }
+      this.state = props.posicion
+      this.state.clase = 'tarjeta-body ' + this.state.color
     }
     
     render() {
@@ -15,10 +14,10 @@ export default class extends React.Component {
         <div>
             <div className='tarjeta-container'>
                 <div className='tarjeta-header'>
-                    <h3>A favor</h3>
+                    <h3>{this.state.titulo}</h3>
                 </div>
-                <div className='tarjeta-body'>
-                    <h1>34</h1>
+                <div className={this.state.clase}>
+                    <h1>{this.state.votos}</h1>
                 </div>
                 <div className='tarjeta-footer'>
                     <a href='https://twitter.com/lasdesistemas' target='blank'>
@@ -27,10 +26,19 @@ export default class extends React.Component {
                 </div>
             </div>
             <style jsx>{`
+            .tarjeta-afavor {
+                background-color: #28b463
+            }
+            .tarjeta-encontra {
+                background-color: #f7dc6f
+            }
+            .tarjeta-indecises {
+                background-color: #e74c3c
+            }
              .tarjeta-header {
                 display: flex;
                 flex-wrap: wrap;
-                background-color: #d5d8dc;
+                background-color: #ebedef;
                 color: #566573;
                 margin: 0 10px;
                 justify-content: center;
@@ -46,7 +54,6 @@ export default class extends React.Component {
                 height:850px;
             }
             .tarjeta-body {
-                background-color: #FFF;
                 margin: 0 10px;
                 display: flex;
                 flex-wrap: wrap;
@@ -62,7 +69,7 @@ export default class extends React.Component {
                 border-bottom: 1px solid #da536f;
             }
             .tarjeta-footer {
-                background-color: #FFF;
+                background-color: #ebedef;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;

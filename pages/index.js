@@ -2,17 +2,18 @@ import Head from '../components/head'
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
 import Footer from '../components/footer'
+import votos from '../static/assets/votos.json'
 
 export default () => (
 <div>
     <Head/>
     <Header />
     <div className="fila">
-      <Tarjeta />
+      <Tarjeta posicion={votos[0]}/>
       <div className="divisor"></div>
-      <Tarjeta />
+      <Tarjeta posicion={votos[1]}/>
       <div className="divisor"></div>
-      <Tarjeta />
+      <Tarjeta posicion={votos[2]}/>
     </div>
     <Footer />
 

@@ -1,0 +1,17 @@
+[
+    {
+        "titulo": "A favor",
+        "votos": "30",
+        "color": "tarjeta-afavor"
+    },
+    {
+        "titulo": "Indecisos/as",
+        "votos": "5",
+        "color": "tarjeta-encontra"
+    },
+    { 
+        "titulo": "En contra",
+        "votos": "4",
+        "color": "tarjeta-indecises"
+    }
+]
