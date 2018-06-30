@@ -9,8 +9,9 @@ export default () => (
     <Header />
     <div className="fila">
       <Tarjeta />
-      <div className="divisor">
-      </div>
+      <div className="divisor"></div>
+      <Tarjeta />
+      <div className="divisor"></div>
       <Tarjeta />
     </div>
     <Footer />
@@ -18,7 +19,7 @@ export default () => (
     <style jsx>{`
       .fila {
         margin: auto;
-        width: 50%;
+        width: 65%;
         display: flex;
         flex-direction: row;
         align-items: flex-start;
