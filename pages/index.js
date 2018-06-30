@@ -9,6 +9,8 @@ export default () => (
     <Header />
     <div className="fila">
       <Tarjeta />
+      <div className="divisor">
+      </div>
       <Tarjeta />
     </div>
     <Footer />
@@ -24,11 +26,13 @@ export default () => (
         margin-top: 20px;
         margin-bottom: 35px;
       }
-      
       @media (max-width: 767px) {
         .fila {
           display: block;
         }
+      }
+      .divisor {
+        width:100%;
       }
     `}</style>
 </div>
