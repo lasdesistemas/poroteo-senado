@@ -43,7 +43,7 @@ export default class extends React.Component {
               }
             .tarjeta-container {
                 width:400px;
-                height:1000px;
+                height:850px;
             }
             .tarjeta-body {
                 background-color: #FFF;
