@@ -6,7 +6,7 @@ export default () => (
         src='static/assets/img/logos/lasdesistemas.png'
         alt='[LAS] de sistemas' />
     </a>
-    <h1 className='title'>Poroteo en senadores</h1>
+    <h1 className='title'>Votación en senadores de la ley de aborto legal, seguro y gratuito en Argentina</h1>
     <style jsx>{`
       .header {
         border-bottom: 1px solid #FFF;
@@ -16,7 +16,7 @@ export default () => (
         padding: 5px 100px;
       }
       .lasdesistemas-logo {
-        height: 50px;
+        height: 80px;
       }
       .title {
         color: #292965;

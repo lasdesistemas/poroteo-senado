@@ -59,6 +59,9 @@ export default class extends React.Component {
                 flex-wrap: wrap;
                 justify-content: center;
                 height: 60%;
+                border-style: solid;
+                border-color: #ebedef;
+                border-width: 10px;
             }
             .tarjeta-container .tarjeta-body > h1 {
                 position: relative;
