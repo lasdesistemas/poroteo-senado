@@ -14,6 +14,9 @@ export default class extends React.Component {
       return (
         <div>
             <div className='tarjeta-container'>
+                <div className='tarjeta-header'>
+                    <h3>A favor</h3>
+                </div>
                 <div className='tarjeta-body'>
                     <h1>34</h1>
                 </div>
@@ -24,6 +27,20 @@ export default class extends React.Component {
                 </div>
             </div>
             <style jsx>{`
+             .tarjeta-header {
+                display: flex;
+                flex-wrap: wrap;
+                background-color: #d5d8dc;
+                color: #566573;
+                margin: 0 10px;
+                justify-content: center;
+                text-align: center;
+              }
+              .tarjeta-header h3 {
+                order: 2;
+                text-transform: uppercase;
+                font-size: 1.4em;
+              }
             .tarjeta-container {
                 width:400px;
                 height:1000px;
