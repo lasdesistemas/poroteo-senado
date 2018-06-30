@@ -15,7 +15,8 @@ export default () => (
 
     <style jsx>{`
       .fila {
-        width: 500px;
+        margin: auto;
+        width: 50%;
         display: flex;
         flex-direction: row;
         align-items: flex-start;
