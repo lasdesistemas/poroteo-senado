@@ -49,7 +49,7 @@ export default class extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className='container'>
             <Head/>
             <Header />
             {
@@ -67,6 +67,13 @@ export default class extends React.Component {
             <Footer />
 
             <style jsx>{`
+              .container {
+                height: 100vh;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: space-between;
+                justify-content: center;
+              }
               .fila {
                 margin: auto;
                 width: 90%;
@@ -74,7 +81,6 @@ export default class extends React.Component {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: flex-start;
-                height: 700px;
                 margin-top: 20px;
                 margin-bottom: 35px;
               }

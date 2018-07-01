@@ -9,6 +9,7 @@ export default () => (
       .footer {
         display: flex;
         justify-content: center;
+        align-self: flex-end;
       }
       a {
         margin: 0 5px;
