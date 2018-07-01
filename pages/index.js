@@ -14,13 +14,15 @@ export default () => (
       <Tarjeta posicion={votos[1]}/>
       <div className="divisor"></div>
       <Tarjeta posicion={votos[2]}/>
+      <div className="divisor"></div>
+      <Tarjeta posicion={votos[3]}/>
     </div>
     <Footer />
 
     <style jsx>{`
       .fila {
         margin: auto;
-        width: 65%;
+        width: 90%;
         display: flex;
         flex-direction: row;
         align-items: flex-start;

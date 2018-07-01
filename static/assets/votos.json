@@ -4,14 +4,20 @@
         "votos": "30",
         "color": "tarjeta-afavor"
     },
-    {
-        "titulo": "Indecisos/as",
-        "votos": "5",
-        "color": "tarjeta-encontra"
-    },
     { 
         "titulo": "En contra",
         "votos": "4",
-        "color": "tarjeta-indecises"
+        "color": "tarjeta-encontra"
+    },
+    {
+        "titulo": "No confirmados",
+        "votos": "5",
+        "color": "tarjeta-noconfirmados"
+    },
+    {
+        "titulo": "Se abstienen",
+        "votos": "5",
+        "color": "tarjeta-abstenciones"
     }
+    
 ]

@@ -30,10 +30,13 @@ export default class extends React.Component {
                 background-color: #28b463
             }
             .tarjeta-encontra {
+                background-color: #e74c3c
+            }
+            .tarjeta-noconfirmados {
                 background-color: #f7dc6f
             }
-            .tarjeta-indecises {
-                background-color: #e74c3c
+            .tarjeta-abstenciones {
+                background-color: #b2babb 
             }
              .tarjeta-header {
                 display: flex;
