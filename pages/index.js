@@ -72,6 +72,7 @@ export default class extends React.Component {
                 width: 90%;
                 display: flex;
                 flex-direction: row;
+                justify-content: space-between;
                 align-items: flex-start;
                 height: 700px;
                 margin-top: 20px;

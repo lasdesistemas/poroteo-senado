@@ -6,6 +6,7 @@ export default class extends React.Component {
       super(props)
       this.state = props.posicion
       this.state.clase = 'tarjeta-body ' + this.state.color
+      this.state.porcentaje = `${Math.floor((this.state.votos / 73) * 100)}%`
     }
     
     render() {
@@ -15,7 +16,7 @@ export default class extends React.Component {
                 <div className='tarjeta-header'>
                     <h3>{this.state.titulo}</h3>
                 </div>
-                <div className={this.state.clase}>
+                <div className={`tarjeta-body ${this.state.clase}`}>
                     <h1>{this.state.votos}</h1>
                 </div>
                 <div className='tarjeta-footer'>
@@ -44,6 +45,7 @@ export default class extends React.Component {
                 color: #566573;
                 justify-content: center;
                 text-align: center;
+                margin-bottom: auto;
               }
               .tarjeta-header h3 {
                 order: 2;
@@ -51,22 +53,26 @@ export default class extends React.Component {
                 font-size: 1.4em;
               }
             .tarjeta-container {
-                width:400px;
-                height:850px;
+                min-width: 260px;
+                height: 400px;
+                background-color: #ebedef;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
             }
             .tarjeta-body {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                height: 60%;
                 border-style: solid;
                 border-color: #ebedef;
                 border-width: 10px;
+                height: ${this.state.porcentaje};
+                position: relative;
             }
             .tarjeta-container .tarjeta-body > h1 {
-                position: relative;
-                top: 50%;
-                float: left;
+                position: absolute;
+                bottom: 0;
             }
             .border-row {
                 border-bottom: 1px solid #da536f;
