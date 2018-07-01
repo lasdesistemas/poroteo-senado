@@ -43,7 +43,6 @@ export default class extends React.Component {
                 flex-wrap: wrap;
                 background-color: #ebedef;
                 color: #566573;
-                margin: 0 10px;
                 justify-content: center;
                 text-align: center;
               }
@@ -57,7 +56,6 @@ export default class extends React.Component {
                 height:850px;
             }
             .tarjeta-body {
-                margin: 0 10px;
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
@@ -79,7 +77,6 @@ export default class extends React.Component {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                margin: 0 10px;
                 padding: 15px 5px 5px;
             }
             .lasdesistemas {
