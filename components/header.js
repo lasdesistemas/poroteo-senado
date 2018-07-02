@@ -9,6 +9,7 @@ export default () => (
     <h1 className='title'>Votación en senadores de la ley de aborto legal, seguro y gratuito en Argentina</h1>
     <style jsx>{`
       .header {
+        align-self: flex-start;
         border-bottom: 1px solid #FFF;
         display: flex;
         justify-content: space-between;
