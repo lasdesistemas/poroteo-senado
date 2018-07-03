@@ -2,6 +2,7 @@ import React from 'react'
 import Head from '../components/head'
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
+import FechaActualizacion from '../components/fecha-actualizacion'
 import Footer from '../components/footer'
 import axios from 'axios'
 
@@ -41,7 +42,8 @@ export default class extends React.Component {
                 "votos": response.data.seAbstiene,
                 "color": "tarjeta-abstenciones"
             }
-        ]
+        ],
+        fecha: response.data.fechaUltimaActualizacion
       })
     })
   }
@@ -63,6 +65,9 @@ export default class extends React.Component {
                 <div className="divisor"></div>
                 <Tarjeta posicion={this.state.votos[3]}/>
               </div>
+            }
+            {this.state.fecha &&
+              <FechaActualizacion fecha={this.state.fecha} />
             }
             <Footer />
 
