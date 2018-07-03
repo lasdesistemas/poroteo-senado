@@ -1,7 +1,8 @@
-import Moment from 'moment-timezone'
+import moment from 'moment-timezone'
+moment.locale('es')
 
 export default ({ fecha }) => (
   <div>
-    { console.log(Moment) }
+  {moment(fecha).tz("America/Argentina/Buenos_Aires").format()}
   </div>
 )
