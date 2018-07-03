@@ -1,5 +1,8 @@
+import Links from '../components/links'
+
 export default () => (
-  <footer className='footer'>
+  <footer className='footer'> 
+    <Links/>
     <p>Hecho con ❤ por 
       <a href='https://twitter.com/lasdesistemas' target='blank'>
         [LAS] de sistemas
@@ -10,6 +13,7 @@ export default () => (
         display: flex;
         justify-content: center;
         align-self: flex-end;
+        flex-direction: column;
       }
       a {
         margin: 0 5px;
