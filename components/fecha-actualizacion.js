@@ -1,5 +1,7 @@
+import Moment from 'moment-timezone'
+
 export default ({ fecha }) => (
   <div>
-    { fecha }
+    { console.log(Moment) }
   </div>
 )
