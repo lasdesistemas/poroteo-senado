@@ -9,10 +9,10 @@
 Correr el comando `npm run export` y se creará la carpeta `/out` que es la que debés usar para deployar. 
 Podés utilizar [now](https://zeit.co/now) para hacer un deploy para testear. Instalalo corriendo `npm install -g now` y luego, en la carpeta out, corré `now --public`. Now te avisará cuando termine el deploy y generará un link y listo!
 
+### Más info sobre el proyecto React
 
 ## Table of Contents
 
-- [Questions? Feedback?](#questions-feedback)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm run dev](#npm-run-dev)
@@ -26,10 +26,6 @@ Podés utilizar [now](https://zeit.co/now) para hacer un deploy para testear. In
 - [Using the `static` Folder](#using-the-static-folder)
 - [Deploy to Now](#deploy-to-now)
 - [Something Missing?](#something-missing)
-
-## Questions? Feedback?
-
-Check out [Next.js FAQ & docs](https://github.com/zeit/next.js#faq) or [let us know](https://github.com/segmentio/create-next-app/issues) your feedback.
 
 ## Folder Structure
 
