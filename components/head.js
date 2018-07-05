@@ -7,6 +7,5 @@ export default () => (
     <link rel='stylesheet' type='text/css' href='static/global.css' />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.contentWindow.min.js" />
   </Head>
 )
