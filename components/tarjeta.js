@@ -5,7 +5,6 @@ export default class extends React.Component {
     constructor(props) {
       super(props)
       this.state = props.posicion
-      this.state.clase = 'tarjeta-body ' + this.state.color
       this.state.porcentaje = `${Math.floor((this.state.votos / 73) * 100)}%`
     }
     
@@ -16,13 +15,8 @@ export default class extends React.Component {
                 <div className='tarjeta-header'>
                     <h3>{this.state.titulo}</h3>
                 </div>
-                <div className={`tarjeta-body ${this.state.clase}`}>
+                <div className={`tarjeta-body ${this.state.color}`}>
                     <h1>{this.state.votos}</h1>
-                </div>
-                <div className='tarjeta-footer'>
-                    <a href='https://twitter.com/lasdesistemas' target='blank'>
-                        <img className='lasdesistemas' src='/static/assets/img/logos/lasdesistemas.png' alt='[LAS] de sistemas' />
-                    </a>
                 </div>
             </div>
             <style jsx>{`
