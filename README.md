@@ -1,10 +1,18 @@
-This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app).
+## Poroteo Senado
 
-Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
+### ¿Cómo levantar el ambiente?
+`npm install`
 
-## Table of Contents
+`npm run dev`
 
-- [Questions? Feedback?](#questions-feedback)
+ ### ¿Cómo generar un HTML estático para el deploy?
+Correr el comando `npm run export` y se creará la carpeta `/out` que es la que debés usar para deployar. 
+Podés utilizar [now](https://zeit.co/now) para hacer un deploy para testear. Instalalo corriendo `npm install -g now` y luego, en la carpeta out, corré `now --public`. Now te avisará cuando termine el deploy y generará un link y listo!
+
+
+
+## Más info sobre el proyecto React
+
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm run dev](#npm-run-dev)
@@ -18,10 +26,6 @@ Find the most recent version of this guide at [here](https://github.com/segmenti
 - [Using the `static` Folder](#using-the-static-folder)
 - [Deploy to Now](#deploy-to-now)
 - [Something Missing?](#something-missing)
-
-## Questions? Feedback?
-
-Check out [Next.js FAQ & docs](https://github.com/zeit/next.js#faq) or [let us know](https://github.com/segmentio/create-next-app/issues) your feedback.
 
 ## Folder Structure
 
