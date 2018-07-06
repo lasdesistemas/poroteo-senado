@@ -5,7 +5,7 @@ export default class extends React.Component {
     constructor(props) {
       super(props)
       this.state = props.posicion
-      this.state.porcentaje = `${Math.floor((this.state.votos / 73) * 100)}%`
+      this.state.porcentaje = `${Math.floor((this.state.votos / 72) * 100)}%`
     }
     
     render() {
