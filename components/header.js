@@ -6,7 +6,7 @@ export default () => (
         src='static/assets/img/logos/lasdesistemas.png'
         alt='[LAS] de sistemas' />
     </a>
-    <h1 className='title'>Votación en senadores de la ley de aborto legal, seguro y gratuito en Argentina</h1>
+    <h1 className='title'><span className="main">Votación en senadores</span> <span className="sub">de la ley de aborto legal, seguro y gratuito en Argentina</span></h1>
     <style jsx>{`
       .header {
         align-self: flex-start;
@@ -20,8 +20,17 @@ export default () => (
         height: 80px;
       }
       .title {
-        color: #292965;
-        font-size: 26px;
+        color: black;
+        font-size: 28px;
+        line-height: 22px;
+      }
+      .main{
+        display:block;
+        text-transform: uppercase;
+      }
+      .sub{
+        font-size:14px;
+        font-weight:100;
       }
       @media (max-width: 768px) {
         .header {

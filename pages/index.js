@@ -79,7 +79,7 @@ export default class extends React.Component {
                 width: 90%;
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: space-around;
                 align-items: flex-start;
                 margin-top: 20px;
                 margin-bottom: 35px;
@@ -91,6 +91,7 @@ export default class extends React.Component {
               }
               .divisor {
                 width:100%;
+                min-height:10px;
               }
             `}</style>
         </div>

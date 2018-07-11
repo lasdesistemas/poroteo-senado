@@ -13,7 +13,7 @@ export default () => (
         display: flex;
         justify-content: center;
         align-self: flex-end;
-        flex-direction: column;
+        flex-direction: row;
       }
       a {
         margin: 0 5px;

@@ -11,7 +11,7 @@ export default class extends React.Component {
     render() {
       return (
         <div>
-            <div className='tarjeta-container'>
+            <div className={`tarjeta-container ${this.state.color}`}>
                 <div className='tarjeta-header'>
                     <h3>{this.state.titulo}</h3>
                 </div>
@@ -32,6 +32,42 @@ export default class extends React.Component {
             .tarjeta-abstenciones {
                 background-color: #b2babb 
             }
+            
+            .tarjeta-container.tarjeta-afavor{
+                border-bottom: 3px solid #28b463;
+            }
+            .tarjeta-container.tarjeta-afavor h3:before{
+                content: '';
+                padding-right: 10px;
+                border-left: 8px solid #28b463;
+            }
+
+            .tarjeta-container.tarjeta-encontra{
+                border-bottom: 3px solid #e74c3c;
+            }
+            .tarjeta-container.tarjeta-encontra h3:before{
+                content:'';
+                padding-right: 10px;
+                border-left: 8px solid #e74c3c;
+            }
+
+            .tarjeta-container.tarjeta-abstenciones{
+                border-bottom: 3px solid #b2babb;
+            }
+            .tarjeta-container.tarjeta-abstenciones h3:before{
+                content:'';
+                padding-right: 10px;
+                border-left: 8px solid #b2babb;
+            }
+
+            .tarjeta-container.tarjeta-noconfirmados{
+                border-bottom: 3px solid #f7dc6f;
+            }
+            .tarjeta-container.tarjeta-noconfirmados h3:before{
+                content:'';
+                padding-right: 10px;
+                border-left: 8px solid #f7dc6f;
+            }
              .tarjeta-header {
                 display: flex;
                 flex-wrap: wrap;
@@ -44,10 +80,10 @@ export default class extends React.Component {
               .tarjeta-header h3 {
                 order: 2;
                 text-transform: uppercase;
-                font-size: 1.4em;
+                font-size: .8em;
               }
             .tarjeta-container {
-                min-width: 260px;
+                min-width: 150px;
                 height: 400px;
                 background-color: #ebedef;
                 display: flex;
@@ -64,6 +100,7 @@ export default class extends React.Component {
                 height: ${this.state.porcentaje};
                 position: relative;
             }
+
             .tarjeta-container .tarjeta-body > h1 {
                 position: absolute;
                 bottom: 0;
