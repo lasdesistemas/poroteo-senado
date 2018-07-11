@@ -73,7 +73,6 @@ export default class extends React.Component {
             <style jsx>{`
               .container {
                 height: 100vh;
-                display: flex;
                 flex-wrap: wrap;
                 align-items: space-between;
                 justify-content: center;

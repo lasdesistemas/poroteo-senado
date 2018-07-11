@@ -12,9 +12,10 @@ export default () => (
         align-self: flex-start;
         border-bottom: 1px solid #FFF;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         padding: 5px 100px;
+        background-color: #f8f6e5;
       }
       .lasdesistemas-logo {
         height: 80px;

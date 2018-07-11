@@ -1,19 +1,18 @@
-import Links from '../components/links'
-
 export default () => (
   <footer className='footer'> 
-    <Links/>
-    <p>Hecho con ❤ por 
-      <a href='https://twitter.com/lasdesistemas' target='blank'>
-        [LAS] de sistemas
-      </a> 
-    </p>
+    <div>
+        <p>Hecho con ❤ por
+          <a href='https://twitter.com/lasdesistemas' target='blank'>
+            [LAS] de sistemas
+          </a>
+        </p>
+
+    </div>
     <style jsx>{`
       .footer {
         display: flex;
+        background-color: #f8f6e5;
         justify-content: center;
-        align-self: flex-end;
-        flex-direction: row;
       }
       a {
         margin: 0 5px;

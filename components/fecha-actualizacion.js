@@ -1,4 +1,6 @@
 import moment from 'moment-timezone'
+import Links from '../components/links'
+
 moment.locale('es')
 
 export default ({ fecha }) => (
@@ -7,6 +9,7 @@ export default ({ fecha }) => (
       Última actualización:
       <span>{moment(fecha).fromNow()}</span>
     </p>
+    <Links/>
     <style jsx>{`
       .fecha-wrapper {
         width: 100%;
