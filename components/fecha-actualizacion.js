@@ -2,7 +2,20 @@ import moment from 'moment-timezone'
 moment.locale('es')
 
 export default ({ fecha }) => (
-  <div>
-  {moment(fecha).tz("America/Argentina/Buenos_Aires").format()}
+  <div className='fecha-wrapper'>
+    <p>
+      Última actualización:
+      <span>{moment(fecha).fromNow()}</span>
+    </p>
+    <style jsx>{`
+      .fecha-wrapper {
+        width: 100%;
+        text-align: center;
+      }
+      .fecha-wrapper span {
+        margin-left: 5px;
+        font-weight: bold;
+      }
+    `}</style>
   </div>
 )

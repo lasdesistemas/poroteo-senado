@@ -70,7 +70,6 @@ export default class extends React.Component {
               <FechaActualizacion fecha={this.state.fecha} />
             }
             <Footer />
-
             <style jsx>{`
               .container {
                 height: 100vh;
