@@ -13,6 +13,7 @@ export default () => (
         display: flex;
         background-color: #f8f6e5;
         justify-content: center;
+        width:100%;
       }
       a {
         margin: 0 5px;

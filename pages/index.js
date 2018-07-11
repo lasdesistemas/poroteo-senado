@@ -76,6 +76,7 @@ export default class extends React.Component {
                 flex-wrap: wrap;
                 align-items: space-between;
                 justify-content: center;
+                display:flex;
               }
               .fila {
                 margin: auto;
