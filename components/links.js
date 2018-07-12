@@ -22,7 +22,7 @@ export default () => (
             margin: 5px;
         }
         .ecofeminita-logo {
-            height: 100px;
+            height: 90px;
             margin: 5px;
         }
         .links {
