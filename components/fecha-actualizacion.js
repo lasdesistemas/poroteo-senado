@@ -14,12 +14,6 @@ export default ({ fecha }) => (
       .fecha-wrapper {
         width: 100%;
         text-align: center;
-        max-height:165px;
-      }
-      @media only screen and (min-width: 768px){
-        .fecha-wrapper{
-          max-height:90px;
-        }
       }
 
       .fecha-wrapper span {
