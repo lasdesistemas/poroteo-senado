@@ -14,6 +14,7 @@ export default ({ fecha }) => (
       .fecha-wrapper {
         width: 100%;
         text-align: center;
+        align-self: flex-end;
       }
 
       .fecha-wrapper span {
