@@ -1,18 +1,18 @@
 import { VOTE_CLASS } from '../constants'
 
 const Cambio = ({ changed }) => (
-    <div>
-        <p>
+  <div>
+    <p>
             Desde la ultima actualización <span>{changed.length} senadores</span> cambiaron de opinion
-        </p>
-        <ul>
-            { changed.map(({name, from, to}) => (
-                <li>
-                    {name} de <span className={VOTE_CLASS[from]}>{from}</span> a <span className={VOTE_CLASS[to]}>{to}</span>
-                </li>
-            ))}
-        </ul>
-        <style jsx>{`
+    </p>
+    <ul>
+      { changed.map(({name, from, to}) => (
+        <li>
+          {name} de <span className={VOTE_CLASS[from]}>{from}</span> a <span className={VOTE_CLASS[to]}>{to}</span>
+        </li>
+      ))}
+    </ul>
+    <style jsx>{`
             .tarjeta-afavor {
                 color: #28b463
             }
@@ -26,8 +26,8 @@ const Cambio = ({ changed }) => (
                 color: #b2babb 
             }
             `}
-        </style>
-    </div>
+    </style>
+  </div>
 )
 
 const NoCambio = () => (
