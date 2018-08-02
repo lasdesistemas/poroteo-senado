@@ -1,3 +1,4 @@
+import React from 'react'
 import { VOTE_CLASS } from '../constants'
 
 const Cambio = ({ changed }) => (
@@ -23,7 +24,7 @@ const Cambio = ({ changed }) => (
                 color: #f7dc6f
             }
             .tarjeta-abstenciones {
-                color: #b2babb 
+                color: #b2babb
             }
             `}
     </style>

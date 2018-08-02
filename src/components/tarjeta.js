@@ -29,9 +29,9 @@ export default class extends React.Component {
                 background-color: #f7dc6f
             }
             .tarjeta-abstenciones {
-                background-color: #b2babb 
+                background-color: #b2babb
             }
-            
+
             .tarjeta-container.tarjeta-afavor{
                 border-bottom: 3px solid #28b463;
             }

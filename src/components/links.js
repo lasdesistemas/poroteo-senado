@@ -1,3 +1,7 @@
+import React from 'react'
+
+import activa from '../img/logos/activa2.png'
+import ecofem from '../img/logos/ecofeminita.png'
 
 export default () => (
 
@@ -6,13 +10,13 @@ export default () => (
     <a href='https://activaelcongreso.org/'>
       <img
         className='activa-logo'
-        src='static/assets/img/logos/activa2.png'
+        src={activa}
         alt='Activa el Congreso' />
     </a>
     <a href='https://docs.google.com/spreadsheets/d/1mOiTT3JIdQPxVLTQ-a3OivQqE15oLvdWMv6I_DpMZak/edit#gid=1248922160'>
       <img
         className='ecofeminita-logo'
-        src='static/assets/img/logos/ecofeminita.png'
+        src={ecofem}
         alt='Ecofeminita' />
     </a>
 

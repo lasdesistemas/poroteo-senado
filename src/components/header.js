@@ -1,10 +1,13 @@
+import React from 'react'
+
+import lasdesistemas from '../img/logos/lasdesistemas.png'
 
 export default ({goBack}) => (
   <header className='header'>
     <a href='/'>
       <img
         className='lasdesistemas-logo'
-        src='static/assets/img/logos/lasdesistemas.png'
+        src={lasdesistemas}
         alt='[LAS] de sistemas' />
       {goBack && <span className='back'>volver</span>}
     </a>
@@ -51,6 +54,6 @@ export default ({goBack}) => (
           font-size: 20px;
         }
       }
-    `}</style>
+            `}</style>
   </header>
 )
