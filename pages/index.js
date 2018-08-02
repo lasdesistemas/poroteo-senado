@@ -20,12 +20,12 @@ const processVotes = (data) => data.reduce((votes, p) => {
     else if (p.PosicionCON_MODIF === 'Se Abstiene')   { votes.seAbstiene++ }
     else { console.error('no data', p) }
 
-    return votes
+  return votes
 }, {
-    aFavor: 0,
-    enContra: 0,
-    noConfirmado: 0,
-    seAbstiene: 0
+  aFavor: 0,
+  enContra: 0,
+  noConfirmado: 0,
+  seAbstiene: 0
 })
 
 const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
@@ -90,29 +90,28 @@ export default class extends React.Component {
     })
   }
 
-  render() {
-
+  render () {
     return (
       <div className='container'>
-            <Head/>
-            <Header />
-            {
-              this.state.votos &&
-              <div className="fila">
-                <Tarjeta posicion={this.state.votos[0]}/>
-                <div className="divisor"></div>
-                <Tarjeta posicion={this.state.votos[1]}/>
-                <div className="divisor"></div>
-                <Tarjeta posicion={this.state.votos[2]}/>
-                <div className="divisor"></div>
-                <Tarjeta posicion={this.state.votos[3]}/>
-              </div>
-            }
-            {this.state.fecha &&
-              <FechaActualizacion fecha={this.state.fecha} />
-            }
-            <Footer />
-            <style jsx>{`
+        <Head />
+        <Header />
+        {
+          this.state.votos &&
+          <div className='fila'>
+            <Tarjeta posicion={this.state.votos[0]} />
+            <div className='divisor' />
+            <Tarjeta posicion={this.state.votos[1]} />
+            <div className='divisor' />
+            <Tarjeta posicion={this.state.votos[2]} />
+            <div className='divisor' />
+            <Tarjeta posicion={this.state.votos[3]} />
+          </div>
+        }
+        {this.state.fecha &&
+        <FechaActualizacion fecha={this.state.fecha} />
+        }
+        <Footer />
+        <style jsx>{`
               .container {
                 height: 100vh;
                 flex-wrap: wrap;
@@ -139,8 +138,8 @@ export default class extends React.Component {
                 width:100%;
                 min-height:10px;
               }
-            `}</style>
-        </div>
+                `}</style>
+      </div>
     )
   }
 }

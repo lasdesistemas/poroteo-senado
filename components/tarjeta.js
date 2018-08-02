@@ -1,25 +1,24 @@
 import React from 'react'
 
 export default class extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = props.posicion
+    this.state.porcentaje = `${Math.floor((this.state.votos / 72) * 100)}%`
+  }
 
-    constructor(props) {
-      super(props)
-      this.state = props.posicion
-      this.state.porcentaje = `${Math.floor((this.state.votos / 72) * 100)}%`
-    }
-    
-    render() {
-      return (
-        <div>
-            <div className={`tarjeta-container ${this.state.color}`}>
-                <div className='tarjeta-header'>
-                    <h3>{this.state.titulo}</h3>
-                </div>
-                <div className={`tarjeta-body ${this.state.color}`}>
-                    <h1>{this.state.votos}</h1>
-                </div>
-            </div>
-            <style jsx>{`
+  render () {
+    return (
+      <div>
+        <div className={`tarjeta-container ${this.state.color}`}>
+          <div className='tarjeta-header'>
+            <h3>{this.state.titulo}</h3>
+          </div>
+          <div className={`tarjeta-body ${this.state.color}`}>
+            <h1>{this.state.votos}</h1>
+          </div>
+        </div>
+        <style jsx>{`
             .tarjeta-afavor {
                 background-color: #28b463
             }
@@ -120,7 +119,7 @@ export default class extends React.Component {
                 margin-right: 10px;
             }
             `}</style>
-    </div>
-  )}
-
+      </div>
+    )
+  }
 }
