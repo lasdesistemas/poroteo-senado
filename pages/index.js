@@ -37,6 +37,8 @@ const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
   if (p.PosicionCON_MODIF !== previous[i].PosicionCON_MODIF) {
     changed.push({
       name: p.Senador,
+      from: previous[i].PosicionCON_MODIF,
+      to: p.PosicionCON_MODIF,
       changed: Date.now()
     })
   }
