@@ -4,9 +4,23 @@ import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
 import FechaActualizacion from '../components/fecha-actualizacion'
 import Footer from '../components/footer'
-import axios from 'axios'
+import GSheet from 'picosheet'
 
 
+const processVotes = (data) => data.reduce((acc, p) => {
+    if      (p.PosicionCON_MODIF === 'A Favor')       { acc.aFavor++ }
+    else if (p.PosicionCON_MODIF === 'En Contra')     { acc.enContra++ }
+    else if (p.PosicionCON_MODIF === 'No confirmado') { acc.noConfirmado++ }
+    else if (p.PosicionCON_MODIF === 'Se Abstiene')   { acc.seAbstiene++ }
+    else { console.error('no data', p) }
+
+    return acc
+}, {
+    aFavor: 0,
+    enContra: 0,
+    noConfirmado: 0,
+    seAbstiene: 0
+})
 
 export default class extends React.Component {
 
@@ -16,34 +30,34 @@ export default class extends React.Component {
 
     }
 
-    axios.get('https://contador-de-votos.now.sh/')
-    .then(response => {
+    GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200)
+    .then(processVotes)
+    .then(data => {
       console.log("Recuperando datos..")
-      this.setState( 
-        { votos:
-          [
+      this.setState({
+        votos: [
             {
                 "titulo": "A favor",
-                "votos": response.data.aFavor,
+                "votos": data.aFavor,
                 "color": "tarjeta-afavor"
             },
             { 
                 "titulo": "En contra",
-                "votos": response.data.enContra,
+                "votos": data.enContra,
                 "color": "tarjeta-encontra"
             },
             {
                 "titulo": "No confirmados",
-                "votos": response.data.noConfirmado,
+                "votos": data.noConfirmado,
                 "color": "tarjeta-noconfirmados"
             },
             {
                 "titulo": "Se abstienen",
-                "votos": response.data.seAbstiene,
+                "votos": data.seAbstiene,
                 "color": "tarjeta-abstenciones"
             }
         ],
-        fecha: response.data.fechaUltimaActualizacion
+        fecha: Date.now()
       })
     })
   }
