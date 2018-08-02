@@ -7,14 +7,15 @@ import Footer from '../components/footer'
 import GSheet from 'picosheet'
 
 
-const processVotes = (data) => data.reduce((acc, p) => {
-    if      (p.PosicionCON_MODIF === 'A Favor')       { acc.aFavor++ }
-    else if (p.PosicionCON_MODIF === 'En Contra')     { acc.enContra++ }
-    else if (p.PosicionCON_MODIF === 'No confirmado') { acc.noConfirmado++ }
-    else if (p.PosicionCON_MODIF === 'Se Abstiene')   { acc.seAbstiene++ }
+
+const processVotes = (data) => data.reduce((votes, p) => {
+    if      (p.PosicionCON_MODIF === 'A Favor')       { votes.aFavor++ }
+    else if (p.PosicionCON_MODIF === 'En Contra')     { votes.enContra++ }
+    else if (p.PosicionCON_MODIF === 'No confirmado') { votes.noConfirmado++ }
+    else if (p.PosicionCON_MODIF === 'Se Abstiene')   { votes.seAbstiene++ }
     else { console.error('no data', p) }
 
-    return acc
+    return votes
 }, {
     aFavor: 0,
     enContra: 0,
