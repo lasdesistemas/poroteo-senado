@@ -46,7 +46,7 @@ export default ({ changed = [] }) => (
         align-self: flex-end;
       }
 
-      .fecha-wrapper span {
+      .cambios-wrapper span {
         margin-left: 5px;
         font-weight: bold;
       }`}
