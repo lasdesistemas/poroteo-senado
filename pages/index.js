@@ -25,41 +25,49 @@ const processVotes = (data) => data.reduce((votes, p) => {
 
 export default class extends React.Component {
 
-  constructor(props) {
+const processState = ({ votes, changed }) => ({
+  votos: [
+    {
+      'titulo': 'A favor',
+      'votos': votes.aFavor,
+      'color': 'tarjeta-afavor'
+    },
+    {
+      'titulo': 'En contra',
+      'votos': votes.enContra,
+      'color': 'tarjeta-encontra'
+    },
+    {
+      'titulo': 'No confirmados',
+      'votos': votes.noConfirmado,
+      'color': 'tarjeta-noconfirmados'
+    },
+    {
+      'titulo': 'Se abstienen',
+      'votos': votes.seAbstiene,
+      'color': 'tarjeta-abstenciones'
+    }
+  ],
+  fecha: Date.now(),
+  changed
+})
+
+export default class extends React.Component {
+  constructor (props) {
     super(props)
     this.state = {
 
     }
+    this.update()
+  }
 
+  update () {
     GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200)
-    .then(processVotes)
-    .then(data => {
+    .then(current => {
       console.log("Recuperando datos..")
-      this.setState({
-        votos: [
-            {
-                "titulo": "A favor",
-                "votos": data.aFavor,
-                "color": "tarjeta-afavor"
-            },
-            { 
-                "titulo": "En contra",
-                "votos": data.enContra,
-                "color": "tarjeta-encontra"
-            },
-            {
-                "titulo": "No confirmados",
-                "votos": data.noConfirmado,
-                "color": "tarjeta-noconfirmados"
-            },
-            {
-                "titulo": "Se abstienen",
-                "votos": data.seAbstiene,
-                "color": "tarjeta-abstenciones"
-            }
-        ],
-        fecha: Date.now()
-      })
+      this.setState(state => processState({
+        votes: processVotes(current),
+      }))
     })
   }
 
