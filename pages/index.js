@@ -5,8 +5,13 @@ import Tarjeta from '../components/tarjeta'
 import FechaActualizacion from '../components/fecha-actualizacion'
 import Footer from '../components/footer'
 import GSheet from 'picosheet'
+import LocalForage from 'localforage'
 
+const KEY = 'senadores'
 
+const store = LocalForage.createInstance({
+  name: 'poroteo'
+})
 
 const processVotes = (data) => data.reduce((votes, p) => {
     if      (p.PosicionCON_MODIF === 'A Favor')       { votes.aFavor++ }
@@ -23,7 +28,18 @@ const processVotes = (data) => data.reduce((votes, p) => {
     seAbstiene: 0
 })
 
-export default class extends React.Component {
+const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
+  if (!previous) { return [] }
+
+  if (p.PosicionCON_MODIF !== previous[i].PosicionCON_MODIF) {
+    changed.push({
+      name: p.Senador,
+      changed: Date.now()
+    })
+  }
+
+  return changed
+}, [])
 
 const processState = ({ votes, changed }) => ({
   votos: [
@@ -62,11 +78,14 @@ export default class extends React.Component {
   }
 
   update () {
-    GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200)
-    .then(current => {
-      console.log("Recuperando datos..")
+    Promise.all([
+      GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200),
+      store.getItem(KEY)
+    ]).then(([current, previous]) => {
+      store.setItem(KEY, current)
       this.setState(state => processState({
         votes: processVotes(current),
+        changes: diffVotes(current, previous)
       }))
     })
   }
