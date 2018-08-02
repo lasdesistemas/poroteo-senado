@@ -8,6 +8,8 @@ import Footer from '../components/footer'
 import GSheet from 'picosheet'
 import LocalForage from 'localforage'
 
+import { VOTE_TYPE, VOTE_CLASS } from '../constants'
+
 const KEY = 'senadores'
 
 const store = LocalForage.createInstance({
@@ -15,11 +17,11 @@ const store = LocalForage.createInstance({
 })
 
 const processVotes = (data) => data.reduce((votes, p) => {
-    if      (p.PosicionCON_MODIF === 'A Favor')       { votes.aFavor++ }
-    else if (p.PosicionCON_MODIF === 'En Contra')     { votes.enContra++ }
-    else if (p.PosicionCON_MODIF === 'No confirmado') { votes.noConfirmado++ }
-    else if (p.PosicionCON_MODIF === 'Se Abstiene')   { votes.seAbstiene++ }
-    else { console.error('no data', p) }
+  if      (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.CONTRA) { votes.enContra++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.NOCONF) { votes.noConfirmado++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.ABSTEN) { votes.seAbstiene++ }
+  else { console.error('no data', p) }
 
   return votes
 }, {
