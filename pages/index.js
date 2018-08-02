@@ -3,6 +3,7 @@ import Head from '../components/head'
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
 import FechaActualizacion from '../components/fecha-actualizacion'
+import Links from '../components/links'
 import Footer from '../components/footer'
 import GSheet from 'picosheet'
 import LocalForage from 'localforage'
@@ -110,6 +111,7 @@ export default class extends React.Component {
         {this.state.fecha &&
         <FechaActualizacion fecha={this.state.fecha} />
         }
+        <Links />
         <Footer />
         <style jsx>{`
               .container {
