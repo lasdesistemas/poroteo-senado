@@ -13,7 +13,7 @@ const Senators = ({ match, senators }) => (
                                 : `http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`
                       
                       return (
-                          <div key={id}>
+                          <div key={s.Senador}>
                               <img src={img} alt={s.Senador}/>
                               <div>
                                   <h2>{s.Senador}</h2>
