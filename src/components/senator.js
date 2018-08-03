@@ -23,7 +23,7 @@ const MiniSenator = ({toggle, Senador, changes}) => (
   </div>
 )
 
-const FullSenator = ({...s}) => {
+const SenatorDetails = ({...s}) => {
   const name = s.Senador.split(', ')
   const id = SID[`${name[1]} ${name[0]}`]
   const img = s.Senador === 'MICHETTI, MARTA GABRIELA'
@@ -31,17 +31,14 @@ const FullSenator = ({...s}) => {
     : `http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`
 
   return (
-    <div key={s.Senador}>
-      <MiniSenator {...s} />
-      <div>
-        <img src={img} alt={s.Senador} />
-        <ul>
-          <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
-          <li>sexo {s.sexo}</li>
-          <li>estado civil {s.estadocivil}</li>
-          <li>religion {s.religion}</li>
-        </ul>
-      </div>
+    <div>
+      <img src={img} alt={s.Senador} />
+      <ul>
+        <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
+        <li>sexo {s.sexo}</li>
+        <li>estado civil {s.estadocivil}</li>
+        <li>religion {s.religion}</li>
+      </ul>
     </div>
   )
 }
@@ -68,6 +65,11 @@ export default class Senator extends React.PureComponent {
       </div>
     }
 
-    return mini ? <MiniSenator {...props} /> : <FullSenator {...props} />
+    return (
+      <div key={props.Senador}>
+        <MiniSenator {...props} />
+        {mini || <SenatorDetails {...props} />}
+      </div>
+    )
   }
 }
