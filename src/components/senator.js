@@ -29,8 +29,8 @@ const MiniSenator = ({toggle, Senador, changes}) => (
           flex-flow: column;
           align-items: flex-end;
           position: absolute;
-          top: 1px;
-          right: 0.5em;
+          top: -14px;
+          right: 0;
  transition: all 0.25s
           }
           .changeList li {opacity: 0; display: block;}
@@ -84,16 +84,25 @@ export default class Senator extends React.PureComponent {
     }
 
     return (
-      <div key={props.Senador} style={{
-        padding: '1em',
-        paddingTop: '0',
-        margin: '1em',
-        borderRadius: '1em',
-        backgroundColor: 'lightgrey',
-        flex: '35vw 0'
-      }}>
+      <div key={props.Senador} className='senador'>
         <MiniSenator {...props} />
         {mini || <SenatorDetails {...props} />}
+        <style>{`
+              .senador {
+                  padding: 0 1em;
+                  margin: 1em;
+                  background: lightgrey;
+                  flex: 35vw 0;
+              }
+
+              @media (max-width: 768px) {
+                  .senador {
+                      margin: 0.2em 0;
+                      flex: 100vw 0;
+                  }
+              }
+            `}
+        </style>
       </div>
     )
   }
