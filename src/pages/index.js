@@ -35,7 +35,7 @@ const processVotes = (data) => data.reduce((votes, p) => {
 })
 
 const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
-  if (!previous) { return [] }
+  if (!previous || !previous.length) { return [] }
 
   if (p.PosicionCON_MODIF !== previous[i].PosicionCON_MODIF) {
     changed.push({
@@ -101,8 +101,9 @@ export default class extends React.Component {
       store.getItem(CHANGED_KEY)
     ]).then(([current, previous, allChanges ]) => {
       allChanges = allChanges || []
+      previous = previous || []
       const senators = current.map((s, i) => ({
-        changes: [],
+        changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
         ...previous[i],
         ...s
       }))

@@ -5,7 +5,7 @@ import moment from '../moment'
 import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
-const Change = ({timestamp = 'inicialmente', from, to}) => (
+const Change = ({timestamp, from, to}) => (
   <ul>
         @{timestamp}<span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
   </ul>
@@ -17,7 +17,6 @@ const reverseChanges = (changes) => {
   for (let i = changes.length - 1; i > -1; i--) {
     ret.push(<Change key={i} {...changes[i]} />)
   }
-  ret.push(<Change key={-1} to={changes[0].from} />)
   return ret
 }
 
