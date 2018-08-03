@@ -8,25 +8,20 @@ const Cambio = ({ changed }) => (
     </p>
     <ul>
       { changed.map(({name, from, to}) => (
-        <li>
-          {name} de <span className={VOTE_CLASS[from]}>{from}</span> a <span className={VOTE_CLASS[to]}>{to}</span>
+        <li key={name}>
+          <span className='senador'>{name}</span> de <span className={`voto ${VOTE_CLASS[from]}`}>{from}</span> a <span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
         </li>
       ))}
     </ul>
     <style>{`
-            .tarjeta-afavor {
-                color: #28b463
-            }
-            .tarjeta-encontra {
-                color: #e74c3c
-            }
-            .tarjeta-noconfirmados {
-                color: #f7dc6f
-            }
-            .tarjeta-abstenciones {
-                color: #b2babb
-            }
-            `}
+        li {
+		display: block;
+	}
+        .voto {
+              padding: 0.1em 0.3em;
+              border-radius: 0.3em;
+        }
+        `}
     </style>
   </div>
 )
@@ -47,7 +42,7 @@ export default ({ changed = [] }) => (
         align-self: flex-end;
       }
 
-      .cambios-wrapper span {
+      .senador {
         margin-left: 5px;
         font-weight: bold;
       }`}
