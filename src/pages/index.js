@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import Senators from './senators'
 import Home from './home'
 
-import { VOTE_TYPE, SENATORS_KEY, SHEET_ID } from '../constants'
+import { VOTE_TYPE, SENATORS_KEY, CHANGED_KEY, SHEET_ID } from '../constants'
 
 const store = LocalForage.createInstance({
   name: 'poroteo'
@@ -76,6 +76,14 @@ const processState = ({ votes, ...rest }) => ({
   ...rest
 })
 
+const arrayEqual = (a, b) => {
+  if (!a || !b || !a.length || (a.length !== b.length)) return false
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false
+  }
+  return true
+}
+
 export default class extends React.Component {
   constructor (props) {
     super(props)
@@ -88,13 +96,24 @@ export default class extends React.Component {
   update () {
     Promise.all([
       GSheet(SHEET_ID, 0, 200),
-      store.getItem(SENATORS_KEY)
-    ]).then(([current, previous]) => {
+      store.getItem(SENATORS_KEY),
+      store.getItem(CHANGED_KEY)
+    ]).then(([current, previous, allChanges ]) => {
+      allChanges = allChanges || []
+      const changed = diffVotes(current, previous)
+      const [lastChanged] = allChanges.slice(-1)
+
+      if (changed.length && !arrayEqual(changed, lastChanged)) {
+        allChanges.push({changes: changed, time: Date.now()})
+        store.setItem(CHANGED_KEY, allChanges)
+      }
+
       store.setItem(SENATORS_KEY, current)
+
       this.setState(state => processState({
         votes: processVotes(current),
-        changed: diffVotes(current, previous),
-        senators: current
+        senators: current,
+        changed
       }))
     })
   }
