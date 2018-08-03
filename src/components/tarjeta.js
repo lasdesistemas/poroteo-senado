@@ -20,19 +20,6 @@ export default class extends React.Component {
           </div>
         </div>
         <style>{`
-            .tarjeta-afavor {
-                background-color: #28b463
-            }
-            .tarjeta-encontra {
-                background-color: #e74c3c
-            }
-            .tarjeta-noconfirmados {
-                background-color: #f7dc6f
-            }
-            .tarjeta-abstenciones {
-                background-color: #b2babb
-            }
-
             .tarjeta-container.tarjeta-afavor{
                 border-bottom: 3px solid #28b463;
             }

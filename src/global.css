@@ -2,6 +2,23 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.tarjeta-afavor {
+    background-color: #28b463
+}
+.tarjeta-encontra {
+    background-color: #e74c3c
+}
+.tarjeta-noconfirmados {
+    background-color: #f7dc6f
+}
+.tarjeta-abstenciones {
+    background-color: #b2babb
+}
+
+.voto {
+    padding: 0.1em 0.3em;
+    border-radius: 0.3em;
+}
 
 .fila {
     margin: auto;
