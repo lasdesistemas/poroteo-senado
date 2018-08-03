@@ -126,7 +126,8 @@ export default class extends React.Component {
   }
 
   render () {
-    const { votos = [], senators = [] } = this.state
+    const { votos, senators, changed, fecha } = this.state
+    if (!votos) return <p>Cargando…</p>
     return (
       <div className='container'>
 
@@ -140,10 +141,10 @@ export default class extends React.Component {
           )} />
         </Switch>
 
-        {this.state.fecha &&
-          <FechaActualizacion fecha={this.state.fecha} />
+        {fecha &&
+        <FechaActualizacion fecha={fecha} />
         }
-        <Cambios changed={this.state.changed.map(c => this.state.senators[c.i])} />
+        <Cambios changed={changed.map(c => senators[c.i])} />
         <Links />
         <Footer />
         <style>{`

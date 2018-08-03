@@ -12,7 +12,7 @@ const Change = ({timestamp = 'inicialmente', from, to}) => (
 )
 
 const reverseChanges = (changes) => {
-  if (!changes || ! changes.length) return []
+  if (!changes || !changes.length) return []
   const ret = []
   for (let i = changes.length - 1; i > -1; i--) {
     ret.push(<Change key={i} {...changes[i]} />)
