@@ -1,6 +1,8 @@
 import React from 'react'
-
+import LocalForage from 'localforage'
 import { Route, Switch, Link } from 'react-router-dom'
+
+import GSheet from '../picosheet'
 
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
@@ -8,8 +10,6 @@ import FechaActualizacion from '../components/fecha-actualizacion'
 import Cambios from '../components/cambios'
 import Links from '../components/links'
 import Footer from '../components/footer'
-import GSheet from '../picosheet'
-import LocalForage from 'localforage'
 
 import SID from '../senadores.json'
 
