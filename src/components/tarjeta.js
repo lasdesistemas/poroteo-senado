@@ -14,7 +14,8 @@ export default class extends React.Component {
           <div className='tarjeta-header'>
             <h3>{this.state.titulo}</h3>
           </div>
-          <div className={`tarjeta-body ${this.state.color}`}>
+          <div className={`tarjeta-body ${this.state.color}`}
+            style={{height: this.state.porcentaje}}>
             <h1>{this.state.votos}</h1>
           </div>
         </div>
@@ -96,7 +97,6 @@ export default class extends React.Component {
                 border-style: solid;
                 border-color: #ebedef;
                 border-width: 10px;
-                height: ${this.state.porcentaje};
                 position: relative;
             }
 
