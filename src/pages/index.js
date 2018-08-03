@@ -141,7 +141,7 @@ export default class extends React.Component {
 
   render () {
     const { votos, senators, changed, fecha, loading } = this.state
-    if (!votos) return <p>Cargando…</p>
+    if (!votos || ! senators ) return <p>Cargando…</p>
     return (
       <div className='container'>
         { loading && <p>Cargando...</p>}
