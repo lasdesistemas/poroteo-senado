@@ -10,13 +10,13 @@ const Cambio = ({ changed }) => (
     </p>
     <ul>
       { changed.map(({name, from, to, ...s}) => (
-        <li key={name}>
+        <li className={'changed'} key={name}>
           <Senator {...s} mini />
         </li>
       ))}
     </ul>
     <style>{`
-        li {
+        .changed {
 		display: block;
 	}
         `}

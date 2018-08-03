@@ -6,20 +6,38 @@ import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
 const Change = ({timestamp, from, to, notime}) => (
-  <li style={{display: 'block', position: 'absolute', top: '1px', right: '0.5em'}}>
+  <li>
     { notime || <span>@ {ago(timestamp)}</span> }
-    <span className={`voto ${VOTE_CLASS[to]}`} style={{borderRadius: '0 0 0.5em 0.5em'}}>{to}</span>
+    <span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
   </li>
 )
 
 const MiniSenator = ({toggle, Senador, changes}) => (
   <div onClick={toggle} style={{position: 'relative'}}>
-      <h2 style={{display: 'inline-block'}}>{Senador}</h2>
-      <ul style={{display: 'inline-block'}}>
-          {changes.map((change, i) =>
-            <Change key={i} {...change} notime={i === changes.length - 1}/>
-          ).slice(0, 4)}
-      </ul>
+    <h2>{Senador}</h2>
+    <ul className='changeList'>
+      {changes.map((change, i) =>
+        <Change key={i} {...change} notime={i === changes.length - 1} />
+      ).slice(0, 4)}
+    </ul>
+    <style>{`
+          h2 {
+          display: inline-block;
+          }
+          .changeList {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-end;
+          position: absolute;
+          top: 1px;
+          right: 0.5em;
+ transition: all 0.25s
+          }
+          .changeList li {opacity: 0; display: block;}
+          .changeList:hover {background: white; z-index: 2;}
+          .changeList:hover li{opacity: 1;}
+          .changeList li:first-of-type {opacity: 1; background: transparent}
+        `}</style>
   </div>
 )
 
