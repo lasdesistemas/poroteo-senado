@@ -20,7 +20,11 @@ const store = LocalForage.createInstance({
 })
 
 const processVotes = (data) => data.reduce((votes, p) => {
-  if (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ } else if (p.PosicionCON_MODIF === VOTE_TYPE.CONTRA) { votes.enContra++ } else if (p.PosicionCON_MODIF === VOTE_TYPE.NOCONF) { votes.noConfirmado++ } else if (p.PosicionCON_MODIF === VOTE_TYPE.ABSTEN) { votes.seAbstiene++ } else { console.error('no data', p) }
+  if (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.CONTRA) { votes.enContra++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.NOCONF) { votes.noConfirmado++ }
+  else if (p.PosicionCON_MODIF === VOTE_TYPE.ABSTEN) { votes.seAbstiene++ }
+  else { console.error('no data', p) }
 
   return votes
 }, {
