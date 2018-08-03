@@ -115,7 +115,7 @@ export default class extends React.Component {
         </Switch>
 
         {this.state.fecha &&
-        <FechaActualizacion fecha={this.state.fecha} />
+          <FechaActualizacion fecha={this.state.fecha} />
         }
         <Cambios changed={this.state.changed} />
         <Links />

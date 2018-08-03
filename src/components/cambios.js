@@ -4,7 +4,7 @@ import { VOTE_CLASS } from '../constants'
 const Cambio = ({ changed }) => (
   <div>
     <p>
-            Desde la ultima actualización <span>{changed.length} senadores</span> cambiaron de opinion
+          Desde la ultima actualización <span>{changed.length} senadores</span> cambiaron de opinion
     </p>
     <ul>
       { changed.map(({name, from, to}) => (
@@ -33,7 +33,7 @@ const Cambio = ({ changed }) => (
 
 const NoCambio = () => (
   <p>
-        Desde la ultima actualización <span>ningun</span> senador cambio de opinion
+      Desde la ultima actualización <span>ningun</span> senador cambio de opinion
   </p>
 )
 
