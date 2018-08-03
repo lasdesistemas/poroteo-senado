@@ -97,11 +97,23 @@ export default class extends React.Component {
   update () {
     Promise.all([
       GSheet(SHEET_ID, 0, 200),
-      store.getItem(SENATORS_KEY),
-      store.getItem(CHANGED_KEY)
-    ]).then(([current, previous, allChanges ]) => {
-      allChanges = allChanges || []
-      previous = previous || []
+      Promise.all([
+        store.getItem(SENATORS_KEY),
+        store.getItem(CHANGED_KEY)
+      ]).then(([ previous, allChanges ]) => {
+        allChanges = allChanges || []
+        previous = previous || []
+
+        this.setState(state => processState({
+          votes: processVotes(previous),
+          previous,
+          changed: [],
+          loading: true
+        }))
+
+        return {previous, allChanges}
+      })
+    ]).then(([current, { previous, allChanges } ]) => {
       const senators = current.map((s, i) => ({
         changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
         ...previous[i],
@@ -120,6 +132,7 @@ export default class extends React.Component {
 
       this.setState(state => processState({
         votes: processVotes(current),
+        loading: false,
         senators,
         changed
       }))
@@ -127,11 +140,11 @@ export default class extends React.Component {
   }
 
   render () {
-    const { votos, senators, changed, fecha } = this.state
+    const { votos, senators, changed, fecha, loading } = this.state
     if (!votos) return <p>Cargando…</p>
     return (
       <div className='container'>
-
+        { loading && <p>Cargando...</p>}
         <Header />
         <Switch>
           <Route path={`/${SENATORS_KEY}/by-vote/:vote`} render={props => (
@@ -156,7 +169,7 @@ export default class extends React.Component {
                       justify-content: center;
                       display:flex;
           }
-            `}
+          `}
         </style>
       </div>
     )
