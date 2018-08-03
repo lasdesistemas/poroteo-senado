@@ -101,15 +101,14 @@ export default class extends React.Component {
 
   render () {
     const { votos = [], senators = [] } = this.state
-    console.error('this state', this.state)
     return (
       <div className='container'>
+
         <Header />
         <Switch>
           <Route path={`/${SENATORS_KEY}/:vote`} render={({match}) => (
             senators.filter(s => (s.PosicionCON_MODIF === match.params.vote))
               .map(s => {
-                console.error(match)
                 const name = s.Senador.split(', ')
                 const id = SID[`${name[1]} ${name[0]}`]
 
