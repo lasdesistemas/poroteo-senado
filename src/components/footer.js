@@ -10,7 +10,7 @@ export default () => (
       </p>
 
     </div>
-    <style jsx>{`
+    <style>{`
       .footer {
         display: flex;
         background-color: #f8f6e5;

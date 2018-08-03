@@ -12,7 +12,7 @@ const Home = ({ match, votos = [] }) => (
             <div className='divisor' />
         </Link>
         )}
-        <style jsx>{`
+        <style>{`
            .divisor {
                     width:100%;
                     min-height:10px;

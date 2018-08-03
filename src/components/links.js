@@ -20,7 +20,7 @@ export default () => (
         alt='Ecofeminita' />
     </a>
 
-    <style jsx>{`
+    <style>{`
         .activa-logo {
             height: 80px;
             margin: 5px;

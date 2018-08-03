@@ -19,7 +19,7 @@ export default class extends React.Component {
             <h1>{this.state.votos}</h1>
           </div>
         </div>
-        <style jsx>{`
+        <style>{`
             .tarjeta-afavor {
                 background-color: #28b463
             }

@@ -9,7 +9,7 @@ export default ({ fecha }) => (
       Última actualización:
       <span>{moment(fecha).fromNow()}</span>
     </p>
-    <style jsx>{`
+    <style>{`
       .fecha-wrapper {
         width: 100%;
         text-align: center;

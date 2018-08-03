@@ -13,7 +13,7 @@ const Cambio = ({ changed }) => (
         </li>
       ))}
     </ul>
-    <style jsx>{`
+    <style>{`
             .tarjeta-afavor {
                 color: #28b463
             }
@@ -40,7 +40,7 @@ const NoCambio = () => (
 export default ({ changed = [] }) => (
   <div className='cambios-wrapper'>
     { changed.length ? <Cambio changed={changed} /> : <NoCambio /> }
-    <style jsx>{`
+    <style>{`
       .cambios-wrapper {
         width: 100%;
         text-align: center;

@@ -120,7 +120,7 @@ export default class extends React.Component {
         <Cambios changed={this.state.changed} />
         <Links />
         <Footer />
-        <style jsx>{`
+        <style>{`
           .container {
                       height: 100vh;
                       flex-wrap: wrap;
