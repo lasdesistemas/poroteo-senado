@@ -168,7 +168,11 @@ export default class extends React.Component {
           }
           @media (max-width: 767px) {
                .fila {
-                 display: block;
+                 display: flex;
+                 flex-wrap: wrap;
+                }
+                .fila a {
+                   flex: 0 1;
                 }
           }
           .divisor {

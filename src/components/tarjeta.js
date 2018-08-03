@@ -68,6 +68,14 @@ export default class extends React.Component {
                 padding-right: 10px;
                 border-left: 8px solid #f7dc6f;
             }
+
+          @media (max-width: 767px) {
+               .tarjeta-container {
+                 min-width: 35vw!important;
+                 height: 40vh!important;
+                }
+          }
+
              .tarjeta-header {
                 display: flex;
                 flex-wrap: wrap;
