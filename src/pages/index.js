@@ -107,27 +107,31 @@ export default class extends React.Component {
         <Header />
         <Switch>
           <Route path={`/${SENATORS_KEY}/:vote`} render={({match}) => (
-            senators.filter(s => (s.PosicionCON_MODIF === match.params.vote))
-              .map(s => {
-                const name = s.Senador.split(', ')
-                const id = SID[`${name[1]} ${name[0]}`]
+            <div className='fila' style={{flexWrap: 'wrap'}}>
 
-                return (
-                  <div>
-                    <img src={`http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`} />
-                    <div>
-                      <h2>{s.Senador}</h2>
-                      <ul>
-                        <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
-                        <li>voto {s.PosicionCON_MODIF}</li>
-                        <li>sexo {s.sexo}</li>
-                        <li>estado civil {s.estadocivil}</li>
-                        <li>religion {s.religion}</li>
-                      </ul>
+              { senators.filter(s => (s.PosicionCON_MODIF === match.params.vote))
+                .map(s => {
+                  const name = s.Senador.split(', ')
+                  const id = SID[`${name[1]} ${name[0]}`]
+
+                  return (
+                    <div key={id}>
+                      <img src={`http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`} />
+                      <div>
+                        <h2>{s.Senador}</h2>
+                        <ul>
+                          <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
+                          <li>voto {s.PosicionCON_MODIF}</li>
+                          <li>sexo {s.sexo}</li>
+                          <li>estado civil {s.estadocivil}</li>
+                          <li>religion {s.religion}</li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                )
-              })
+                  )
+                })
+              }
+            </div>
 
           )} />
           <Route render={props => (
