@@ -5,13 +5,13 @@ import { Route, Switch, Link } from 'react-router-dom'
 import GSheet from '../picosheet'
 
 import Header from '../components/header'
-import Tarjeta from '../components/tarjeta'
 import FechaActualizacion from '../components/fecha-actualizacion'
 import Cambios from '../components/cambios'
 import Links from '../components/links'
 import Footer from '../components/footer'
 
-import SID from '../senadores.json'
+import Senators from './senators'
+import Home from './home'
 
 import { VOTE_TYPE, VOTE_CLASS, SENATORS_KEY } from '../constants'
 
@@ -106,44 +106,12 @@ export default class extends React.Component {
 
         <Header />
         <Switch>
-          <Route path={`/${SENATORS_KEY}/:vote`} render={({match}) => (
-            <div className='fila' style={{flexWrap: 'wrap'}}>
-
-              { senators.filter(s => (s.PosicionCON_MODIF === match.params.vote))
-                .map(s => {
-                  const name = s.Senador.split(', ')
-                  const id = SID[`${name[1]} ${name[0]}`]
-
-                  return (
-                    <div key={id}>
-                      <img src={`http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`} />
-                      <div>
-                        <h2>{s.Senador}</h2>
-                        <ul>
-                          <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
-                          <li>voto {s.PosicionCON_MODIF}</li>
-                          <li>sexo {s.sexo}</li>
-                          <li>estado civil {s.estadocivil}</li>
-                          <li>religion {s.religion}</li>
-                        </ul>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
-
-          )} />
-          <Route render={props => (
-            <div className='fila'>
-              {votos.map((voto, i) => <Link to={`/${SENATORS_KEY}/${voto.titulo}`}>
-                <Tarjeta posicion={voto} />
-                <div className='divisor' />
-              </Link>
-              )}
-            </div>
-
-          )} />
+            <Route path={`/${SENATORS_KEY}/:vote`} render={props => (
+                <Senators senators={senators} {...props} />
+            )} />
+            <Route render={props => (
+                <Home votos={votos} {...props} />
+            )} />
         </Switch>
 
         {this.state.fecha &&
@@ -159,11 +127,7 @@ export default class extends React.Component {
                       align-items: space-between;
                       justify-content: center;
                       display:flex;
-                      }
-          .divisor {
-                    width:100%;
-                    min-height:10px;
-                    }
+          }
             `}
         </style>
       </div>
