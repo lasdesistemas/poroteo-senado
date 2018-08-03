@@ -91,26 +91,24 @@ export default class extends React.Component {
       store.setItem(KEY, current)
       this.setState(state => processState({
         votes: processVotes(current),
-        changes: diffVotes(current, previous)
+        changes: diffVotes(current, previous),
       }))
     })
   }
 
   render () {
+    const { votos } = this.state
     return (
       <div className='container'>
         <Head />
         <Header />
         {
-          this.state.votos &&
+          votos &&
           <div className='fila'>
-            <Tarjeta posicion={this.state.votos[0]} />
-            <div className='divisor' />
-            <Tarjeta posicion={this.state.votos[1]} />
-            <div className='divisor' />
-            <Tarjeta posicion={this.state.votos[2]} />
-            <div className='divisor' />
-            <Tarjeta posicion={this.state.votos[3]} />
+            {votos.map((voto, i) => [
+                  <Tarjeta posicion={voto} />,
+              <div className='divisor' />
+            ])}
           </div>
         }
         {this.state.fecha &&
