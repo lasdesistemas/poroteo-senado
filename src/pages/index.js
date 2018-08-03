@@ -160,28 +160,6 @@ export default class extends React.Component {
                       justify-content: center;
                       display:flex;
                       }
-          .fila {
-                 margin: auto;
-                 width: 90%;
-                 display: flex;
-                 flex-direction: row;
-                 justify-content: space-around;
-                 align-items: flex-start;
-                 margin-top: 20px;
-                 margin-bottom: 35px;
-          }
-          .fila a {
-               color: black;
-          }
-          @media (max-width: 767px) {
-               .fila {
-                 display: flex;
-                 flex-wrap: wrap;
-                }
-                .fila a {
-                   flex: 0 1;
-                }
-          }
           .divisor {
                     width:100%;
                     min-height:10px;
