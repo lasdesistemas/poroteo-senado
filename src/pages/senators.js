@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { SENATORS_KEY } from '../constants'
 import SID from '../senadores.json'
 
 const Senators = ({ match, senators }) => (
@@ -15,7 +14,7 @@ const Senators = ({ match, senators }) => (
                       
                       return (
                           <div key={id}>
-                              <img src={img} />
+                              <img src={img} alt={s.Senador}/>
                               <div>
                                   <h2>{s.Senador}</h2>
                                   <ul>

@@ -1,6 +1,6 @@
 import React from 'react'
 import LocalForage from 'localforage'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import GSheet from '../picosheet'
 
@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import Senators from './senators'
 import Home from './home'
 
-import { VOTE_TYPE, VOTE_CLASS, SENATORS_KEY, SHEET_ID } from '../constants'
+import { VOTE_TYPE, SENATORS_KEY, SHEET_ID } from '../constants'
 
 const store = LocalForage.createInstance({
   name: 'poroteo'
