@@ -118,7 +118,7 @@ export default class extends React.Component {
                 height: 50px;
                 margin-right: 10px;
             }
-            `}</style>
+                `}</style>
       </div>
     )
   }

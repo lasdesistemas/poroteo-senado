@@ -102,7 +102,7 @@ export default class extends React.Component {
           votos &&
           <div className='fila'>
             {votos.map((voto, i) => [
-                  <Tarjeta posicion={voto} />,
+              <Tarjeta posicion={voto} />,
               <div className='divisor' />
             ])}
           </div>
