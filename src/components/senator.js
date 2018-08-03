@@ -5,28 +5,21 @@ import ago from '../ago'
 import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
-
-const Change = ({timestamp, from, to}) => (
+const Change = ({timestamp, from, to, notime}) => (
   <ul>
-      @{ago(timestamp)}<span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
+    { notime || <span>@ {ago(timestamp)}</span> }
+    <span className={`voto ${VOTE_CLASS[to]}`} style={{borderRadius: '0 0 0.5em 0.5em'}}>{to}</span>
   </ul>
 )
 
-const reverseChanges = (changes) => {
-  if (!changes || !changes.length) return []
-  const ret = []
-  for (let i = changes.length - 1; i > -1; i--) {
-    ret.push(<Change key={i} {...changes[i]} />)
-  }
-  return ret
-}
-
 const MiniSenator = ({toggle, Senador, changes}) => (
   <div onClick={toggle}>
-    <h2>{Senador}</h2>
-    <ul>
-      {reverseChanges(changes).slice(0, 5)}
-    </ul>
+      <h2>{Senador}</h2>
+      <ul>
+          {changes.map((change, i) =>
+            <Change key={i} {...change} notime={i === changes.length - 1}/>
+          ).slice(0, 4)}
+      </ul>
   </div>
 )
 
