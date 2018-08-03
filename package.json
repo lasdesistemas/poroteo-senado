@@ -1,5 +1,6 @@
 {
   "name": "create-next-example-app",
+  "homepage": "https://xaiki.github.io/poroteo-senado",
   "dependencies": {
     "axios": "^0.18.0",
     "localforage": "^1.7.2",
