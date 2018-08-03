@@ -8,13 +8,12 @@ const Cambio = ({ changed }) => (
     <p>
           Desde la ultima actualización <span>{changed.length} senadores</span> cambiaron de opinion
     </p>
-    <ul>
+    <div className='fila' style={{flexWrap: 'wrap'}}>
       { changed.map(({name, from, to, ...s}) => (
-        <li className={'changed'} key={name}>
-          <Senator {...s} mini />
-        </li>
+        <Senator {...s} mini />
+
       ))}
-    </ul>
+    </div>
     <style>{`
         .changed {
 		display: block;
