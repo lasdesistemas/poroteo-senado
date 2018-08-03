@@ -101,19 +101,25 @@ export default class extends React.Component {
       store.getItem(CHANGED_KEY)
     ]).then(([current, previous, allChanges ]) => {
       allChanges = allChanges || []
+      const senators = current.map((s, i) => ({
+        changes: [],
+        ...previous[i],
+        ...s
+      }))
       const changed = diffVotes(current, previous)
       const [lastChanged] = allChanges.slice(-1)
 
       if (changed.length && !arrayEqual(changed, lastChanged)) {
         allChanges.push({changes: changed, time: Date.now()})
         store.setItem(CHANGED_KEY, allChanges)
+        changed.forEach(c => senators[c.i].changes.push(c))
       }
 
-      store.setItem(SENATORS_KEY, current)
+      store.setItem(SENATORS_KEY, senators)
 
       this.setState(state => processState({
         votes: processVotes(current),
-        senators: current,
+        senators,
         changed
       }))
     })
