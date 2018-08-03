@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Route, Switch, Link } from 'react-router-dom'
 
-import Head from '../components/head'
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
 import FechaActualizacion from '../components/fecha-actualizacion'
@@ -101,7 +100,6 @@ export default class extends React.Component {
     console.error('this state', this.state)
     return (
       <div className='container'>
-        <Head />
         <Header />
         <Switch>
           <Route path={`/${SENATORS_KEY}/:vote`} render={({match}) => (
