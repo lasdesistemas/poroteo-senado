@@ -11,3 +11,5 @@ export const VOTE_CLASS = {
   [VOTE_TYPE.NOCONF]: 'tarjeta-noconfirmados',
   [VOTE_TYPE.ABSTEN]: 'tarjeta-abstenciones'
 }
+
+export const SENATORS_KEY = 'senators'

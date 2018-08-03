@@ -9,9 +9,9 @@ import Footer from '../components/footer'
 import GSheet from '../picosheet'
 import LocalForage from 'localforage'
 
-import { VOTE_TYPE, VOTE_CLASS } from '../constants'
+import SID from '../senadores.json'
 
-const KEY = 'senadores'
+import { VOTE_TYPE, VOTE_CLASS, SENATORS_KEY } from '../constants'
 
 const store = LocalForage.createInstance({
   name: 'poroteo'
@@ -43,31 +43,31 @@ const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
   return changed
 }, [])
 
-const processState = ({ votes, changed }) => ({
+const processState = ({ votes, ...rest }) => ({
   votos: [
     {
-      'titulo': 'A favor',
+      'titulo': 'A Favor',
       'votos': votes.aFavor,
       'color': 'tarjeta-afavor'
     },
     {
-      'titulo': 'En contra',
+      'titulo': 'En Contra',
       'votos': votes.enContra,
       'color': 'tarjeta-encontra'
     },
     {
-      'titulo': 'No confirmados',
+      'titulo': 'No confirmado',
       'votos': votes.noConfirmado,
       'color': 'tarjeta-noconfirmados'
     },
     {
-      'titulo': 'Se abstienen',
+      'titulo': 'Se Abstiene',
       'votos': votes.seAbstiene,
       'color': 'tarjeta-abstenciones'
     }
   ],
   fecha: Date.now(),
-  changed
+  ...rest
 })
 
 export default class extends React.Component {
@@ -82,9 +82,9 @@ export default class extends React.Component {
   update () {
     Promise.all([
       GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200),
-      store.getItem(KEY)
+      store.getItem(SENATORS_KEY)
     ]).then(([current, previous]) => {
-      store.setItem(KEY, current)
+      store.setItem(SENATORS_KEY, current)
       this.setState(state => processState({
         votes: processVotes(current),
         changed: diffVotes(current, previous)
