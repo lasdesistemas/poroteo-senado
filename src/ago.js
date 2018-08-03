@@ -21,7 +21,7 @@ function ago (time) {
 }
 
 ago.units = [
-  { max: 2760000, value: 60000, name: 'minuta', prev: 'hace un minuto' }, // max: 46 minutes
+  { max: 2760000, value: 60000, name: 'minuto', prev: 'hace un minuto' }, // max: 46 minutes
   { max: 72000000, value: 3600000, name: 'hora', prev: 'hace una hora' }, // max: 20 hours
   { max: 518400000, value: 86400000, name: 'dia', prev: 'ayer' }, // max: 6 days
   { max: 2419200000, value: 604800000, name: 'semana', prev: 'hace una semana' }, // max: 28 days
