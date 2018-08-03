@@ -1,13 +1,14 @@
 import React from 'react'
 
-import moment from '../moment'
+import ago from '../ago'
 
 import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
+
 const Change = ({timestamp, from, to}) => (
   <ul>
-        @{timestamp}<span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
+      @{ago(timestamp)}<span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
   </ul>
 )
 

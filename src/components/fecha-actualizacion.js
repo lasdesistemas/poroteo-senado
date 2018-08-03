@@ -1,13 +1,11 @@
 import React from 'react'
-import moment from 'moment-timezone'
-
-moment.locale('es')
+import ago from '../ago'
 
 export default ({ fecha }) => (
   <div className='fecha-wrapper'>
     <p>
       Última actualización:
-      <span>{moment(fecha).fromNow()}</span>
+      <span>{ago(fecha)}</span>
     </p>
     <style>{`
       .fecha-wrapper {
