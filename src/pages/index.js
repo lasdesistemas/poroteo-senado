@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import Senators from './senators'
 import Home from './home'
 
-import { VOTE_TYPE, VOTE_CLASS, SENATORS_KEY } from '../constants'
+import { VOTE_TYPE, VOTE_CLASS, SENATORS_KEY, SHEET_ID } from '../constants'
 
 const store = LocalForage.createInstance({
   name: 'poroteo'
@@ -87,7 +87,7 @@ export default class extends React.Component {
 
   update () {
     Promise.all([
-      GSheet('143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo', 0, 200),
+      GSheet(SHEET_ID, 0, 200),
       store.getItem(SENATORS_KEY)
     ]).then(([current, previous]) => {
       store.setItem(SENATORS_KEY, current)
