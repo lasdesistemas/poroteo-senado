@@ -39,10 +39,11 @@ const diffVotes = (current, previous) => current.reduce((changed, p, i) => {
 
   if (p.PosicionCON_MODIF !== previous[i].PosicionCON_MODIF) {
     changed.push({
+      i,
       name: p.Senador,
       from: previous[i].PosicionCON_MODIF,
       to: p.PosicionCON_MODIF,
-      changed: Date.now()
+      timestamp: Date.now()
     })
   }
 
@@ -136,7 +137,7 @@ export default class extends React.Component {
         {this.state.fecha &&
           <FechaActualizacion fecha={this.state.fecha} />
         }
-        <Cambios changed={this.state.changed} />
+        <Cambios changed={this.state.changed.map(c => this.state.senators[c.i])} />
         <Links />
         <Footer />
         <style>{`

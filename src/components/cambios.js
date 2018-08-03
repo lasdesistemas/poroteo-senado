@@ -1,15 +1,17 @@
 import React from 'react'
 import { VOTE_CLASS } from '../constants'
 
+import Senator from './senator'
+
 const Cambio = ({ changed }) => (
   <div>
     <p>
           Desde la ultima actualización <span>{changed.length} senadores</span> cambiaron de opinion
     </p>
     <ul>
-      { changed.map(({name, from, to}) => (
+      { changed.map(({name, from, to, ...s}) => (
         <li key={name}>
-          <span className='senador'>{name}</span> de <span className={`voto ${VOTE_CLASS[from]}`}>{from}</span> a <span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
+          <Senator {...s} mini />
         </li>
       ))}
     </ul>
