@@ -1,4 +1,7 @@
 import React from 'react'
+
+import { Route, Switch, Link } from 'react-router-dom'
+
 import Head from '../components/head'
 import Header from '../components/header'
 import Tarjeta from '../components/tarjeta'
@@ -87,26 +90,57 @@ export default class extends React.Component {
       store.setItem(SENATORS_KEY, current)
       this.setState(state => processState({
         votes: processVotes(current),
-        changed: diffVotes(current, previous)
+        changed: diffVotes(current, previous),
+        senators: current
       }))
     })
   }
 
   render () {
-    const { votos } = this.state
+    const { votos = [], senators = [] } = this.state
+    console.error('this state', this.state)
     return (
       <div className='container'>
         <Head />
         <Header />
-        {
-          votos &&
-          <div className='fila'>
-            {votos.map((voto, i) => [
-              <Tarjeta posicion={voto} />,
-              <div className='divisor' />
-            ])}
-          </div>
-        }
+        <Switch>
+          <Route path={`/${SENATORS_KEY}/:vote`} render={({match}) => (
+            senators.filter(s => (s.PosicionCON_MODIF === match.params.vote))
+              .map(s => {
+                console.error(match)
+                const name = s.Senador.split(', ')
+                const id = SID[`${name[1]} ${name[0]}`]
+
+                return (
+                  <div>
+                    <img src={`http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`} />
+                    <div>
+                      <h2>{s.Senador}</h2>
+                      <ul>
+                        <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
+                        <li>voto {s.PosicionCON_MODIF}</li>
+                        <li>sexo {s.sexo}</li>
+                        <li>estado civil {s.estadocivil}</li>
+                        <li>religion {s.religion}</li>
+                      </ul>
+                    </div>
+                  </div>
+                )
+              })
+
+          )} />
+          <Route render={props => (
+            <div className='fila'>
+              {votos.map((voto, i) => <Link to={`/${SENATORS_KEY}/${voto.titulo}`}>
+                <Tarjeta posicion={voto} />
+                <div className='divisor' />
+              </Link>
+              )}
+            </div>
+
+          )} />
+        </Switch>
+
         {this.state.fecha &&
         <FechaActualizacion fecha={this.state.fecha} />
         }
@@ -114,33 +148,37 @@ export default class extends React.Component {
         <Links />
         <Footer />
         <style jsx>{`
-              .container {
-                height: 100vh;
-                flex-wrap: wrap;
-                align-items: space-between;
-                justify-content: center;
-                display:flex;
-              }
-              .fila {
-                margin: auto;
-                width: 90%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                align-items: flex-start;
-                margin-top: 20px;
-                margin-bottom: 35px;
-              }
-              @media (max-width: 767px) {
-                .fila {
-                  display: block;
+          .container {
+                      height: 100vh;
+                      flex-wrap: wrap;
+                      align-items: space-between;
+                      justify-content: center;
+                      display:flex;
+                      }
+          .fila {
+                 margin: auto;
+                 width: 90%;
+                 display: flex;
+                 flex-direction: row;
+                 justify-content: space-around;
+                 align-items: flex-start;
+                 margin-top: 20px;
+                 margin-bottom: 35px;
+          }
+          .fila a {
+               color: black;
+          }
+          @media (max-width: 767px) {
+               .fila {
+                 display: block;
                 }
-              }
-              .divisor {
-                width:100%;
-                min-height:10px;
-              }
-                `}</style>
+          }
+          .divisor {
+                    width:100%;
+                    min-height:10px;
+                    }
+            `}
+        </style>
       </div>
     )
   }
