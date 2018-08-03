@@ -1,14 +1,13 @@
 'use strict;'
 
-const axios = require('axios')
-
 const buildGDocsURL = (key) => (
   `https://spreadsheets.google.com/feeds/list/${key}/od6/public/values?alt=json`
 )
 
 const getGDocsData = (spreadsheetId, page = 0, limit = 50) => (
-  axios.get(buildGDocsURL(spreadsheetId))
-    .then(({data}) => {
+  fetch(buildGDocsURL(spreadsheetId))
+    .then(res => res.json())
+    .then(data => {
       const entries = Object.values(data.feed.entry)
       const [firstRow, ...rows] = entries
 
