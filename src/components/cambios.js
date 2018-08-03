@@ -10,8 +10,7 @@ const Cambio = ({ changed }) => (
     </p>
     <div className='fila' style={{flexWrap: 'wrap'}}>
       { changed.map(({name, from, to, ...s}) => (
-        <Senator {...s} mini />
-
+        <Senator key={s.Senador} {...s} mini />
       ))}
     </div>
     <style>{`
