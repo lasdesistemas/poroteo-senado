@@ -125,12 +125,12 @@ export default class extends React.Component {
 
         <Header />
         <Switch>
-            <Route path={`/${SENATORS_KEY}/:vote`} render={props => (
-                <Senators senators={senators} {...props} />
-            )} />
-            <Route render={props => (
-                <Home votos={votos} {...props} />
-            )} />
+          <Route path={`/${SENATORS_KEY}/by-vote/:vote`} render={props => (
+            <Senators senators={senators} {...props} />
+          )} />
+          <Route render={props => (
+            <Home votos={votos} {...props} />
+          )} />
         </Switch>
 
         {this.state.fecha &&
