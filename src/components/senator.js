@@ -6,16 +6,16 @@ import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
 const Change = ({timestamp, from, to, notime}) => (
-  <ul>
+  <li style={{display: 'block', position: 'absolute', top: '1px', right: '0.5em'}}>
     { notime || <span>@ {ago(timestamp)}</span> }
     <span className={`voto ${VOTE_CLASS[to]}`} style={{borderRadius: '0 0 0.5em 0.5em'}}>{to}</span>
-  </ul>
+  </li>
 )
 
 const MiniSenator = ({toggle, Senador, changes}) => (
-  <div onClick={toggle}>
-      <h2>{Senador}</h2>
-      <ul>
+  <div onClick={toggle} style={{position: 'relative'}}>
+      <h2 style={{display: 'inline-block'}}>{Senador}</h2>
+      <ul style={{display: 'inline-block'}}>
           {changes.map((change, i) =>
             <Change key={i} {...change} notime={i === changes.length - 1}/>
           ).slice(0, 4)}
@@ -31,7 +31,7 @@ const SenatorDetails = ({...s}) => {
     : `http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`
 
   return (
-    <div>
+    <div style={{display: 'flex', flexFlow: 'row wrap'}}>
       <img src={img} alt={s.Senador} />
       <ul>
         <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
@@ -66,7 +66,14 @@ export default class Senator extends React.PureComponent {
     }
 
     return (
-      <div key={props.Senador}>
+      <div key={props.Senador} style={{
+        padding: '1em',
+        paddingTop: '0',
+        margin: '1em',
+        borderRadius: '1em',
+        backgroundColor: 'lightgrey',
+        flex: '35vw 0'
+      }}>
         <MiniSenator {...props} />
         {mini || <SenatorDetails {...props} />}
       </div>
