@@ -1,9 +1,14 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { hydrate, render } from 'react-dom'
 import { HashRouter as Router } from 'react-router-dom'
 import './global.css'
-import App from './pages'
+import Index from './pages'
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'))
+const root = document.getElementById('root')
+if (root.hasChildNodes()) {
+    hydrate(<Router><Index /></Router>, root)
+} else {
+    render(<Router><Index /></Router>, root)
+}
 registerServiceWorker()
