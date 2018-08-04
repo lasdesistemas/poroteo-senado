@@ -1,7 +1,7 @@
 import React from 'react'
 
-import activa from '../img/logos/activa2.png'
-import ecofem from '../img/logos/ecofeminita.png'
+import activa from '../img/logos/activa2.png.webp'
+import ecofem from '../img/logos/ecofeminita.png.webp'
 
 export default () => (
 
