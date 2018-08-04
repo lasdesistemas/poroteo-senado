@@ -1,6 +1,4 @@
 import React from 'react'
-import { VOTE_CLASS } from '../constants'
-
 import Senator from './senator'
 
 const Cambio = ({ changed }) => (
