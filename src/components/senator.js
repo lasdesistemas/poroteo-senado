@@ -49,7 +49,7 @@ const SenatorDetails = ({...s}) => {
     : `http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`
 
   return (
-    <div style={{display: 'flex', flexFlow: 'row wrap'}}>
+    <div style={{display: 'flex', flexFlow: 'row'}}>
       <img src={img} alt={s.Senador} />
       <ul>
         <li>partido {s['PARTIDO POR EL QUE INGRESÓ']}</li>
