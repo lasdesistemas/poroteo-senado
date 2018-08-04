@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import IO from 'socket.io-client'
 
 import GSheet from '../picosheet'
 
@@ -12,7 +13,7 @@ import Footer from '../components/footer'
 import Senators from './senators'
 import Home from './home'
 
-import { VOTE_TYPE, SENATORS_KEY, CHANGED_KEY, SHEET_ID } from '../constants'
+import { VOTE_TYPE, SENATORS_KEY, CHANGED_KEY, SHEET_ID, SOCKET_HOST } from '../constants'
 
 let store = localStorage
 if (typeof store === "undefined" || store === null) {
@@ -101,6 +102,19 @@ export default class extends React.Component {
       broadcasts: []
     })
 
+    this.socket = IO(SOCKET_HOST)
+    this.socket.on('connect', () => {
+      console.error('connected to Socket.IO')
+      this.socket.on('tweet', msg => {
+        console.error('got tweet from Socket.IO')
+        if (! msg.match('#poroteo')) return
+
+        this.setState(state => ({
+          broadcasts: [...state.broadcasts, msg]
+        }))
+      })
+    })
+
     this.update()
   }
 
@@ -134,10 +148,11 @@ export default class extends React.Component {
   }
 
   render () {
-    const { votos = [], senators = [], changed = [], fecha, loading} = this.state
+    const { votos = [], senators = [], changed = [], broadcasts = [], fecha, loading} = this.state
     return (
       <div className='container'>
-        { loading && <p>Cargando...</p>}
+          { loading && <p>Cargando...</p>}
+          {broadcasts.length && <div>{broadcasts.slice(-1)}</div>}
         <Header />
         <Switch>
           <Route path={`/${SENATORS_KEY}/by-vote/:vote`} render={props => (
