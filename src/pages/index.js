@@ -1,5 +1,4 @@
 import React from 'react'
-import LocalForage from 'localforage'
 import { Route, Switch } from 'react-router-dom'
 
 import GSheet from '../picosheet'
@@ -15,9 +14,11 @@ import Home from './home'
 
 import { VOTE_TYPE, SENATORS_KEY, CHANGED_KEY, SHEET_ID } from '../constants'
 
-const store = LocalForage.createInstance({
-  name: 'poroteo'
-})
+let store = localStorage
+if (typeof store === "undefined" || store === null) {
+  const LocalStorage = import('node-localstorage').LocalStorage
+  store = new LocalStorage('./scratch');
+}
 
 const processVotes = (data) => data.reduce((votes, p) => {
   if (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ }
@@ -88,55 +89,48 @@ const arrayEqual = (a, b) => {
 export default class extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
 
-    }
+    this.previous = JSON.parse(store.getItem(SENATORS_KEY) || '[]')
+    this.allChanges = JSON.parse(store.getItem(CHANGED_KEY) || '[]')
+
+    this.state = processState({
+      votes: processVotes(this.previous),
+      previous: this.previous,
+      changed: [],
+      loading: true,
+      broadcasts: []
+    })
+
     this.update()
   }
 
   update () {
-    Promise.all([
-      GSheet(SHEET_ID, 0, 200),
-      Promise.all([
-        store.getItem(SENATORS_KEY),
-        store.getItem(CHANGED_KEY)
-      ]).then(([ previous, allChanges ]) => {
-        allChanges = allChanges || []
-        previous = previous || []
+    const { previous, allChanges } = this
+    GSheet(SHEET_ID, 0, 200).then(
+      current  => {
+        const senators = current.map((s, i) => ({
+          changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
+          ...previous[i],
+          ...s
+        }))
+        const changed = diffVotes(current, previous)
+        const [lastChanged] = allChanges.slice(-1)
+
+        if (changed.length && !arrayEqual(changed, lastChanged)) {
+          allChanges.push({changes: changed, time: Date.now()})
+          store.setItem(CHANGED_KEY, JSON.stringify(allChanges))
+          changed.forEach(c => senators[c.i].changes.push(c))
+        }
+
+        store.setItem(SENATORS_KEY, JSON.stringify(senators))
 
         this.setState(state => processState({
-          votes: processVotes(previous),
-          previous,
-          changed: [],
-          loading: true
+          votes: processVotes(current),
+          loading: false,
+          senators,
+          changed
         }))
-
-        return {previous, allChanges}
       })
-    ]).then(([current, { previous, allChanges } ]) => {
-      const senators = current.map((s, i) => ({
-        changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
-        ...previous[i],
-        ...s
-      }))
-      const changed = diffVotes(current, previous)
-      const [lastChanged] = allChanges.slice(-1)
-
-      if (changed.length && !arrayEqual(changed, lastChanged)) {
-        allChanges.push({changes: changed, time: Date.now()})
-        store.setItem(CHANGED_KEY, allChanges)
-        changed.forEach(c => senators[c.i].changes.push(c))
-      }
-
-      store.setItem(SENATORS_KEY, senators)
-
-      this.setState(state => processState({
-        votes: processVotes(current),
-        loading: false,
-        senators,
-        changed
-      }))
-    })
   }
 
   render () {
