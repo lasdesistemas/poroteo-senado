@@ -188,7 +188,7 @@ export default class extends React.Component {
     return (
       <div className='container'>
           { loading && <p>Cargando...</p>}
-          {broadcasts.length && <div>{broadcasts.slice(-1)}</div>}
+          {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
         <Header />
         <Switch>
           <Route path={`/senators/by-vote/:vote`} render={props => (
