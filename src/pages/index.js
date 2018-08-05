@@ -20,7 +20,12 @@ if (typeof store === "undefined" || store === null) {
   const LocalStorage = import('node-localstorage').LocalStorage
   store = new LocalStorage('./scratch');
 }
-
+/*
+const _setItem = (key, value) => {
+  console.error('setItem', key, value)
+  store.setItem(key, value)
+}
+*/
 const processVotes = (data) => data.reduce((votes, p) => {
   if (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ }
   else if (p.PosicionCON_MODIF === VOTE_TYPE.CONTRA) { votes.enContra++ }

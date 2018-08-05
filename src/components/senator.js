@@ -4,7 +4,6 @@ import ago from '../ago'
 
 import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
-import imgs from '../img/senators'
 
 const Change = ({timestamp, from, to, notime}) => (
   <li>
@@ -47,7 +46,7 @@ const SenatorDetails = ({...s}) => {
   const id = SID[`${name[1]} ${name[0]}`]
   const img = s.Senador === 'MICHETTI, MARTA GABRIELA'
     ? 'http://www.senado.gov.ar/adjunto/autoridadesCamara/11'
-    : imgs[id]
+    : `http://www.senado.gov.ar/bundles/senadosenadores/images/fsenaG/${id}.png`
 
   return (
     <div style={{display: 'flex', flexFlow: 'row'}}>
