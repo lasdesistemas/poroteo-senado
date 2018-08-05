@@ -132,12 +132,12 @@ export default class extends React.Component {
     setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
   }
   update() {
-    GSheet(SHEET_IDS.RESULTS).then(
+    GSheet(SHEET_IDS.RESULTS, 0, 200).then(
       ([results]) => {
         if (this.checksum !== results.checksum) {
           this.checksum = results.checksum
           this.setState(processState({votes: results}))
-          GSheet(SHEET_IDS.VOTES)
+          GSheet(SHEET_IDS.VOTES, 0, 200)
               .then(this.refresh.bind(this))
         } else {
           this.setState({loading: false})
