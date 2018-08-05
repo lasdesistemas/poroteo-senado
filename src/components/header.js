@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import lasdesistemas from '../img/logos/lasdesistemas.png.webp'
+import lasdesistemas from '../img/logos/lasdesistemas.png'
 
 export default ({goBack}) => (
   <header className='header'>
