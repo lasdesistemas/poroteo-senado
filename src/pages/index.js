@@ -57,22 +57,22 @@ const processState = ({ votes, ...rest }) => ({
     {
       'titulo': 'A Favor',
       'votos': votes.aFavor,
-      'color': 'tarjeta-afavor'
+      'color': 'afavor'
     },
     {
       'titulo': 'En Contra',
       'votos': votes.enContra,
-      'color': 'tarjeta-encontra'
+      'color': 'encontra'
     },
     {
       'titulo': 'No confirmado',
       'votos': votes.noConfirmado,
-      'color': 'tarjeta-noconfirmados'
+      'color': 'noconfirmados'
     },
     {
       'titulo': 'Se Abstiene',
       'votos': votes.seAbstiene,
-      'color': 'tarjeta-abstenciones'
+      'color': 'abstenciones'
     }
   ],
   fecha: Date.now(),

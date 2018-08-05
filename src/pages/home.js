@@ -8,7 +8,7 @@ import { SENATORS_KEY } from '../constants'
 const Home = ({ match, votos = [] }) => (
   <div className='fila'>
     {votos.map((voto, i) => <Link key={i} to={`/${SENATORS_KEY}/by-vote/${voto.titulo}`}>
-      <Tarjeta posicion={voto} />
+      <Tarjeta {...voto} />
       <div className='divisor' />
     </Link>
     )}
