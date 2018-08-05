@@ -23,6 +23,7 @@ export const SHEET_IDS = {
   RESULTS: '1YymW1VM2GdnVNEtpz6rvLh7fOqbyb0WbEm_23bLtMF8',
   VOTES: '1-O6zxEYdMX6-5gED2yKAU4OE4RcJZKvP4Hfhqil5BwE'
 }
-export const SOCKET_HOST = 'https://tweetsock-egyjyglphh.now.sh'
+
+export const SOCKET_HOST = 'https://tweetsock-nycbnqyiyt.now.sh'
 
 export const UPDATE_TIMEOUT = 30000 // son 30000
