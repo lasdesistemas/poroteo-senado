@@ -90,6 +90,7 @@ const arrayEqual = (a, b) => {
 export default class extends React.Component {
   constructor (props) {
     super(props)
+    this.setupSocketIO()
 
     this.previous = JSON.parse(store.getItem(SENATORS_KEY) || '[]')
     this.allChanges = JSON.parse(store.getItem(CHANGED_KEY) || '[]')
@@ -102,18 +103,19 @@ export default class extends React.Component {
       broadcasts: []
     })
 
+  setupSocketIO() {
     this.socket = IO(SOCKET_HOST)
     this.socket.on('connect', () => {
       console.error('connected to Socket.IO')
       this.socket.on('tweet', msg => {
         console.error('got tweet from Socket.IO')
         if (! msg.match('#poroteo')) return
-
         this.setState(state => ({
           broadcasts: [...state.broadcasts, msg]
         }))
       })
     })
+  }
 
     this.update()
   }
