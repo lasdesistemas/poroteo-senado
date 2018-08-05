@@ -12,7 +12,17 @@ export const VOTE_CLASS = {
   [VOTE_TYPE.ABSTEN]: 'tarjeta-abstenciones'
 }
 
-export const SENATORS_KEY = 'senators'
-export const CHANGED_KEY = 'votes_changed'
-export const SHEET_ID = '143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo'
+export const STORAGE_KEYS = {
+  SENATORS: 'senators',
+  CHANGED: 'changed',
+  CHECKSUM: 'checksum'
+}
+
+export const SHEET_IDS = {
+  ALL: '143fmK1J9Lj9z2gc2EuCyzy9b5d72a32_N0GDveKMrvo',
+  RESULTS: '1YymW1VM2GdnVNEtpz6rvLh7fOqbyb0WbEm_23bLtMF8',
+  VOTES: '1-O6zxEYdMX6-5gED2yKAU4OE4RcJZKvP4Hfhqil5BwE'
+}
 export const SOCKET_HOST = 'https://tweetsock-egyjyglphh.now.sh'
+
+export const UPDATE_TIMEOUT = 30000 // son 30000

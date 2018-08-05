@@ -13,7 +13,7 @@ import Footer from '../components/footer'
 import Senators from './senators'
 import Home from './home'
 
-import { VOTE_TYPE, SENATORS_KEY, CHANGED_KEY, SHEET_ID, SOCKET_HOST } from '../constants'
+import { VOTE_TYPE, UPDATE_TIMEOUT, STORAGE_KEYS, SHEET_IDS, SOCKET_HOST } from '../constants'
 
 let store = localStorage
 if (typeof store === "undefined" || store === null) {
@@ -92,16 +92,27 @@ export default class extends React.Component {
     super(props)
     this.setupSocketIO()
 
-    this.previous = JSON.parse(store.getItem(SENATORS_KEY) || '[]')
-    this.allChanges = JSON.parse(store.getItem(CHANGED_KEY) || '[]')
+    this.previous = JSON.parse(store.getItem(STORAGE_KEYS.SENATORS) || '[]')
+    this.allChanges = JSON.parse(store.getItem(STORAGE_KEYS.CHANGED) || '[]')
+    this.checksum = store.getItem(STORAGE_KEYS.CHECKSUM)
 
-    this.state = processState({
-      votes: processVotes(this.previous),
-      previous: this.previous,
-      changed: [],
-      loading: true,
-      broadcasts: []
-    })
+    if (! this.previous.length) {
+      console.error("FULL REFRESH BURNING DATA")
+      GSheet(SHEET_IDS.ALL, 0, 200).then(this.refresh.bind(this))
+      this.state = {
+      }
+    } else {
+      this.state = processState({
+        votes: processVotes(this.previous),
+        previous: this.previous,
+        changed: [],
+        loading: true,
+        broadcasts: []
+      })
+    }
+
+    this.update()
+  }
 
   setupSocketIO() {
     this.socket = IO(SOCKET_HOST)
@@ -117,36 +128,54 @@ export default class extends React.Component {
     })
   }
 
-    this.update()
+  scheduleUpdate() {
+    setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
+  }
+  update() {
+    GSheet(SHEET_IDS.RESULTS).then(
+      ([results]) => {
+        if (this.checksum !== results.checksum) {
+          this.checksum = results.checksum
+          this.setState(processState({votes: results}))
+          GSheet(SHEET_IDS.VOTES)
+              .then(this.refresh.bind(this))
+        } else {
+          this.setState({loading: false})
+          this.scheduleUpdate()
+        }
+      }
+    )
   }
 
-  update () {
+  refresh (current) {
+    console.error('refreshing', current)
     const { previous, allChanges } = this
-    GSheet(SHEET_ID, 0, 200).then(
-      current  => {
-        const senators = current.map((s, i) => ({
-          changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
-          ...previous[i],
-          ...s
-        }))
-        const changed = diffVotes(current, previous)
-        const [lastChanged] = allChanges.slice(-1)
+    const senators = current.map((s, i) => ({
+      changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
+      ...previous[i],
+      ...s
+    }))
+    const changed = diffVotes(current, previous)
+    const [lastChanged] = allChanges.slice(-1)
 
-        if (changed.length && !arrayEqual(changed, lastChanged)) {
-          allChanges.push({changes: changed, time: Date.now()})
-          store.setItem(CHANGED_KEY, JSON.stringify(allChanges))
-          changed.forEach(c => senators[c.i].changes.push(c))
-        }
+    if (changed.length && !arrayEqual(changed, lastChanged)) {
+      allChanges.push({changes: changed, time: Date.now()})
+      store.setItem(STORAGE_KEYS.CHANGED, JSON.stringify(allChanges))
+      changed.forEach(c => senators[c.i].changes.push(c))
+    }
 
-        store.setItem(SENATORS_KEY, JSON.stringify(senators))
+    store.setItem(STORAGE_KEYS.SENATORS, JSON.stringify(senators))
+    store.setItem(STORAGE_KEYS.CHECKSUM, this.checksum)
 
-        this.setState(state => processState({
-          votes: processVotes(current),
-          loading: false,
-          senators,
-          changed
-        }))
-      })
+    this.setState(state => processState({
+      votes: processVotes(current),
+      loading: false,
+      senators,
+      changed
+    }))
+
+    this.scheduleUpdate()
+    this.previous = current
   }
 
   render () {
