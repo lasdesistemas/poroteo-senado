@@ -117,6 +117,7 @@ export default class extends React.Component {
     }
 
     this.update()
+        .then(refreshed => refreshed || this.refresh(this.previous))
   }
 
   setupSocketIO() {
@@ -136,8 +137,9 @@ export default class extends React.Component {
   scheduleUpdate() {
     setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
   }
+
   update() {
-    GSheet(SHEET_IDS.RESULTS, 0, 200).then(
+    return GSheet(SHEET_IDS.RESULTS, 0, 200).then(
       ([results]) => {
         if (this.checksum !== results.checksum) {
           this.checksum = results.checksum
@@ -147,6 +149,7 @@ export default class extends React.Component {
         } else {
           this.setState({loading: false})
           this.scheduleUpdate()
+          return false
         }
       }
     )
@@ -181,6 +184,7 @@ export default class extends React.Component {
 
     this.scheduleUpdate()
     this.previous = current
+    return true
   }
 
   render () {
