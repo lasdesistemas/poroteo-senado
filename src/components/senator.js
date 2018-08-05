@@ -12,13 +12,21 @@ const Change = ({timestamp, from, to, notime}) => (
   </li>
 )
 
+const renderChanges = (changes) => {
+  const changeList = []
+  for (let i = changes.length - 1; i > -1; i--) {
+    changeList.push(<Change key={i} {...changes[i]} notime={i === 0} />)
+  }
+  return changeList.slice(0, 4)
+}
+
 const MiniSenator = ({toggle, Senador, changes}) => (
   <div onClick={toggle} style={{position: 'relative'}}>
     <h2>{Senador}</h2>
     <ul className='changeList'>
-      {changes.map((change, i) =>
-        <Change key={i} {...change} notime={i === changes.length - 1} />
-      ).slice(0, 4)}
+      {
+        renderChanges(changes)
+      }
     </ul>
     <style>{`
           h2 {
