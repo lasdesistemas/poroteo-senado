@@ -3,11 +3,10 @@ import React from 'react'
 import Tarjeta from '../components/tarjeta'
 
 import { Link } from 'react-router-dom'
-import { SENATORS_KEY } from '../constants'
 
 const Home = ({ match, votos = [] }) => (
   <div className='fila'>
-    {votos.map((voto, i) => <Link key={i} to={`/${SENATORS_KEY}/by-vote/${voto.titulo}`}>
+    {votos.map((voto, i) => <Link key={i} to={`/senators/by-vote/${voto.titulo}`}>
       <Tarjeta {...voto} />
       <div className='divisor' />
     </Link>

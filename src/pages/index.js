@@ -157,7 +157,7 @@ export default class extends React.Component {
           {broadcasts.length && <div>{broadcasts.slice(-1)}</div>}
         <Header />
         <Switch>
-          <Route path={`/${SENATORS_KEY}/by-vote/:vote`} render={props => (
+          <Route path={`/senators/by-vote/:vote`} render={props => (
             <Senators senators={senators} {...props} />
           )} />
           <Route render={props => (
