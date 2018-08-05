@@ -9,17 +9,17 @@ const colors = {
 export default ({titulo, votos, color}) => {
   const porcentaje = Math.floor((votos / 72) * 100)
   return (
-      <div>
-          <div className={`tarjeta-container`} style={{borderColor: colors[color]}}>
-              <div className='tarjeta-header' style={{ color: colors[color]}}>
-                  <h3><span>{titulo}</span></h3>
-              </div>
-              <div className={`tarjeta-body ${color}`}
-                   style={{height: `${porcentaje}%`, background: colors[color]}}>
-                  <h1>{votos}</h1>
-              </div>
-          </div>
-          <style>{`
+    <div>
+      <div className={`tarjeta-container`} style={{borderColor: colors[color]}}>
+        <div className='tarjeta-header' style={{ color: colors[color]}}>
+          <h3><span>{titulo}</span></h3>
+        </div>
+        <div className={`tarjeta-body ${color}`}
+          style={{height: `${porcentaje}%`, background: colors[color]}}>
+          <h1>{votos}</h1>
+        </div>
+      </div>
+      <style>{`
 .tarjeta-container {
     border-bottom: 3px solid;
 }
@@ -89,6 +89,6 @@ export default ({titulo, votos, color}) => {
     margin-right: 10px;
 }
               `}</style>
-      </div>
+    </div>
   )
 }
