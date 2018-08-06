@@ -16,9 +16,9 @@ import Home from './home'
 import { VOTE_TYPE, UPDATE_TIMEOUT, STORAGE_KEYS, SHEET_IDS, SOCKET_HOST } from '../constants'
 
 let store = localStorage
-if (typeof store === "undefined" || store === null) {
-  const LocalStorage = import('node-localstorage').LocalStorage
-  store = new LocalStorage('./scratch');
+if (typeof store === 'undefined' || store === null) {
+  const LocalStorage = require('node-localstorage').LocalStorage
+  store = new LocalStorage('./scratch')
 }
 /*
 const _setItem = (key, value) => {
@@ -101,8 +101,8 @@ export default class extends React.Component {
     this.allChanges = JSON.parse(store.getItem(STORAGE_KEYS.CHANGED) || '[]')
     this.checksum = store.getItem(STORAGE_KEYS.CHECKSUM)
 
-    if (! this.previous.length) {
-      console.error("FULL REFRESH BURNING DATA")
+    if (!this.previous.length) {
+      console.error('FULL REFRESH BURNING DATA')
       GSheet(SHEET_IDS.ALL, 0, 200).then(this.refresh.bind(this))
       this.state = {
       }
@@ -117,16 +117,16 @@ export default class extends React.Component {
     }
 
     this.update()
-        .then(refreshed => refreshed || this.refresh(this.previous))
+      .then(refreshed => refreshed || this.refresh(this.previous))
   }
 
-  setupSocketIO() {
+  setupSocketIO () {
     this.socket = IO(SOCKET_HOST)
     this.socket.on('connect', () => {
       console.error('connected to Socket.IO')
       this.socket.on('tweet', msg => {
         console.error('got tweet from Socket.IO')
-        if (! msg.match('#poroteo')) return
+        if (!msg.match('#poroteo')) return
         this.setState(state => ({
           broadcasts: [...state.broadcasts, msg]
         }))
@@ -134,18 +134,18 @@ export default class extends React.Component {
     })
   }
 
-  scheduleUpdate() {
+  scheduleUpdate () {
     setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
   }
 
-  update() {
+  update () {
     return GSheet(SHEET_IDS.RESULTS, 0, 200).then(
       ([results]) => {
         if (this.checksum !== results.checksum) {
           this.checksum = results.checksum
           this.setState(processState({votes: results}))
           GSheet(SHEET_IDS.VOTES, 0, 200)
-              .then(this.refresh.bind(this))
+            .then(this.refresh.bind(this))
         } else {
           this.setState({loading: false})
           this.scheduleUpdate()
@@ -191,8 +191,8 @@ export default class extends React.Component {
     const { votos = [], senators = [], changed = [], broadcasts = [], fecha, loading} = this.state
     return (
       <div className='container'>
-          { loading && <p>Cargando...</p>}
-          {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
+        { loading && <p>Cargando...</p>}
+        {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
         <Header />
         <Switch>
           <Route path={`/senators/by-vote/:vote`} render={props => (
@@ -204,7 +204,7 @@ export default class extends React.Component {
         </Switch>
 
         {fecha &&
-        <FechaActualizacion fecha={fecha} />
+          <FechaActualizacion fecha={fecha} />
         }
         <Cambios changed={changed.map(c => senators[c.i])} />
         <Links />
@@ -217,7 +217,7 @@ export default class extends React.Component {
                       justify-content: center;
                       display:flex;
           }
-          `}
+            `}
         </style>
       </div>
     )
