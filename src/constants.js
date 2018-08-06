@@ -24,6 +24,6 @@ export const SHEET_IDS = {
   VOTES: '1-O6zxEYdMX6-5gED2yKAU4OE4RcJZKvP4Hfhqil5BwE'
 }
 
-export const SOCKET_HOST = 'https://tweetsock-cbmisgjbhb.now.sh'
+export const SOCKET_HOST = 'https://tweetsock.now.sh'
 
 export const UPDATE_TIMEOUT = 30000 // son 30000
