@@ -1,6 +1,6 @@
 {
   "name": "create-next-example-app",
-  "homepage": "https://xaiki.github.io/poroteo-senado",
+  "homepage": "/",
   "reactSnap": {
     "puppeteerArgs": ["--no-sandbox"]
   },
