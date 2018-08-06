@@ -163,15 +163,18 @@ export default class extends React.Component {
       ...previous[i],
       ...s
     }))
-    const changed = diffVotes(current, previous)
+    const nowChanged = diffVotes(current, previous)
     const [lastChanged] = allChanges.slice(-1)
 
-    if (changed.length && !arrayEqual(changed, lastChanged)) {
-      allChanges.push({changes: changed, time: Date.now()})
+    if (nowChanged.length && !arrayEqual(nowChanged, lastChanged)) {
+      allChanges.push({changes: nowChanged, time: Date.now()})
       store.setItem(STORAGE_KEYS.CHANGED, JSON.stringify(allChanges))
-      changed.forEach(c => senators[c.i].changes.push(c))
+      nowChanged.forEach(c => senators[c.i].changes.push(c))
     }
 
+    const changed = senators
+      .filter(s => s.changes.length > 1)
+      .sort((a, b) => a.changes.slice(-1)[0].timestamp < b.changes.slice(-1)[0].timestamp)
     store.setItem(STORAGE_KEYS.SENATORS, JSON.stringify(senators))
     store.setItem(STORAGE_KEYS.CHECKSUM, this.checksum)
 
@@ -206,7 +209,7 @@ export default class extends React.Component {
         {fecha &&
           <FechaActualizacion fecha={fecha} />
         }
-        <Cambios changed={changed.map(c => senators[c.i])} />
+        <Cambios changed={changed} />
         <Links />
         <Footer />
         <style>{`
