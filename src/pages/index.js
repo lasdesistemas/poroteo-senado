@@ -1,17 +1,14 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
 import IO from 'socket.io-client'
 
 import GSheet from '../picosheet'
 
 import Header from '../components/header'
 import FechaActualizacion from '../components/fecha-actualizacion'
+import Tarjeta from '../components/tarjeta'
 import Cambios from '../components/cambios'
 import Links from '../components/links'
 import Footer from '../components/footer'
-
-import Senators from './senators'
-import Home from './home'
 
 import { VOTE_TYPE, UPDATE_TIMEOUT, STORAGE_KEYS, SHEET_IDS, SOCKET_HOST } from '../constants'
 
@@ -21,11 +18,11 @@ if (typeof store === 'undefined' || store === null) {
   store = new LocalStorage('./scratch')
 }
 /*
-const _setItem = (key, value) => {
-  console.error('setItem', key, value)
-  store.setItem(key, value)
-}
-*/
+   const _setItem = (key, value) => {
+   console.error('setItem', key, value)
+   store.setItem(key, value)
+   }
+ */
 const processVotes = (data) => data.reduce((votes, p) => {
   if (p.PosicionCON_MODIF === VOTE_TYPE.AFAVOR) { votes.aFavor++ }
   else if (p.PosicionCON_MODIF === VOTE_TYPE.CONTRA) { votes.enContra++ }
@@ -117,7 +114,7 @@ export default class extends React.Component {
     }
 
     this.update()
-      .then(refreshed => refreshed || this.refresh(this.previous))
+        .then(refreshed => refreshed || this.refresh(this.previous))
   }
 
   setupSocketIO () {
@@ -145,7 +142,7 @@ export default class extends React.Component {
           this.checksum = results.checksum
           this.setState(processState({votes: results}))
           GSheet(SHEET_IDS.VOTES, 0, 200)
-            .then(this.refresh.bind(this))
+                                 .then(this.refresh.bind(this))
         } else {
           this.setState({loading: false})
           this.scheduleUpdate()
@@ -194,25 +191,23 @@ export default class extends React.Component {
     const { votos = [], senators = [], changed = [], broadcasts = [], fecha, loading} = this.state
     return (
       <div className='container'>
-        { loading && <p>Cargando...</p>}
-        {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
-        <Header />
-        <Switch>
-          <Route path={`/senators/by-vote/:vote`} render={props => (
-            <Senators senators={senators} {...props} />
-          )} />
-          <Route render={props => (
-            <Home votos={votos} {...props} />
-          )} />
-        </Switch>
-
-        {fecha &&
-          <FechaActualizacion fecha={fecha} />
-        }
-        <Cambios changed={changed} />
-        <Links />
-        <Footer />
-        <style>{`
+          { loading && <p>Cargando...</p>}
+          {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
+          <Header />
+          <div className='fila'>
+              {votos.map((voto, i) => 
+                <Tarjeta key={voto.titulo} {...voto}
+                         senators={senators.filter(s => s.PosicionCON_MODIF === voto.titulo)}
+                />
+              )}
+          </div>
+          {fecha &&
+           <FechaActualizacion fecha={fecha} />
+          }
+          <Cambios changed={changed} />
+          <Links />
+          <Footer />
+          <style>{`
           .container {
                       height: 100vh;
                       flex-wrap: wrap;
@@ -221,7 +216,7 @@ export default class extends React.Component {
                       display:flex;
           }
             `}
-        </style>
+          </style>
       </div>
     )
   }

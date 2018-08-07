@@ -6,13 +6,16 @@ const colors = {
   noconfirmados: '#f7dc6f'
 }
 
-export default ({titulo, votos, color}) => {
+export default ({titulo, votos, color, senators}) => {
   const porcentaje = Math.floor((votos / 72) * 100)
   return (
     <div>
       <div className={`tarjeta-container`} style={{borderColor: colors[color]}}>
         <div className='tarjeta-header' style={{ color: colors[color]}}>
-          <h3><span>{titulo}</span></h3>
+            <h3><span>{titulo}</span></h3>
+            <ul>
+                {senators.map(s => s.Senador.split(',')[0])}
+            </ul>
         </div>
         <div className={`tarjeta-body ${color}`}
           style={{height: `${porcentaje}%`, background: colors[color]}}>
