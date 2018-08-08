@@ -132,7 +132,8 @@ export default class extends React.Component {
   }
 
   scheduleUpdate () {
-    setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
+    clearTimeout(this._updateTimer)
+    this._updateTimer = setTimeout(this.update.bind(this), UPDATE_TIMEOUT)
   }
 
   update () {
