@@ -5,34 +5,32 @@ import ago from '../ago'
 import SID from '../senadores.json'
 import { VOTE_CLASS } from '../constants'
 
-const Change = ({timestamp, from, to, notime}) => (
-  <li>
-    { notime || <span>@ {ago(timestamp)}</span> }
-    <span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
-  </li>
+const Change = ({to}) => (
+  <span className={`voto ${VOTE_CLASS[to]}`}>{to}</span>
 )
 
-const renderChanges = (changes) => {
-  const changeList = []
-  for (let i = changes.length - 1; i > -1; i--) {
-    changeList.push(<Change key={i} {...changes[i]} notime={i === 0} />)
-  }
-  return changeList.slice(0, 4)
+const Changes = ({changes}) => {
+  if (!changes || changes.length < 2) return null
+
+  const length = changes.length
+  const from = changes[length - 2]
+  const to = changes[length - 1]
+
+  return (
+    <span>
+        cambió de <Change {...from} /> a <Change {...to} /> @{ago(to.timestamp)}
+    </span>
+  )
 }
 
-const MiniSenator = ({toggle, Senador, changes}) => (
-  <div onClick={toggle} className='senator'>
-    <h2>{Senador}</h2>
-    <ul className='changeList'>
-      {
-        renderChanges(changes)
-      }
-    </ul>
-    <style>{`
-
-        `}</style>
-  </div>
-)
+const MiniSenator = ({toggle, Senador, changes}) => {
+  return (
+    <div onClick={toggle} className='senator'>
+      <h2>{Senador}</h2>
+      <Changes changes={changes} />
+    </div>
+  )
+}
 
 const SenatorDetails = ({...s}) => {
   const name = s.Senador.split(', ')
