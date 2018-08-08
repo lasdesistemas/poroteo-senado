@@ -14,7 +14,7 @@ export default ({titulo, votos, color, senators}) => {
         <div className='tarjeta-header' style={{ color: colors[color]}}>
             <h3><span>{titulo}</span></h3>
             <ul>
-                {senators.map(s => <li>{s.Senador.split(',')[0]}</li>)}
+                {senators.map(s => <li key={s.Senador}>{s.Senador.split(',')[0]}</li>)}
             </ul>
         </div>
         <div className={`tarjeta-body ${color}`}
