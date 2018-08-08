@@ -21,7 +21,7 @@ const renderChanges = (changes) => {
 }
 
 const MiniSenator = ({toggle, Senador, changes}) => (
-  <div onClick={toggle} style={{position: 'relative'}}>
+  <div onClick={toggle} className='senator'>
     <h2>{Senador}</h2>
     <ul className='changeList'>
       {
@@ -29,22 +29,7 @@ const MiniSenator = ({toggle, Senador, changes}) => (
       }
     </ul>
     <style>{`
-          h2 {
-          display: inline-block;
-          }
-          .changeList {
-          display: flex;
-          flex-flow: column;
-          align-items: flex-end;
-          position: absolute;
-          top: -14px;
-          right: 0;
- transition: all 0.25s
-          }
-          .changeList li {opacity: 0; display: block;}
-          .changeList:hover {background: white; z-index: 2;}
-          .changeList:hover li{opacity: 1;}
-          .changeList li:first-of-type {opacity: 1; background: transparent}
+
         `}</style>
   </div>
 )

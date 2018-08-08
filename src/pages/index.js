@@ -8,6 +8,7 @@ import FechaActualizacion from '../components/fecha-actualizacion'
 import Tarjeta from '../components/tarjeta'
 import Cambios from '../components/cambios'
 import Links from '../components/links'
+import Search from '../components/search'
 import Footer from '../components/footer'
 
 import { VOTE_TYPE, UPDATE_TIMEOUT, STORAGE_KEYS, SHEET_IDS, SOCKET_HOST } from '../constants'
@@ -208,6 +209,7 @@ export default class extends React.Component {
            <FechaActualizacion fecha={fecha} />
           }
           <Cambios changed={changed} />
+          <Search senators={senators}/>
           <Links />
           <Footer />
           <style>{`

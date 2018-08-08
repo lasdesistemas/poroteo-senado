@@ -15,9 +15,6 @@ body {
     background-color: #b2babb
 }
 
-.tarjeta-container {
-    border-bottom: 3px solid;
-}
 .tarjeta-container h3 span {
     color: black;
 }
@@ -40,20 +37,28 @@ body {
     color: #566573;
     justify-content: center;
     text-align: center;
-    margin-bottom: auto;
+
 }
 .tarjeta-header h3 {
     text-transform: uppercase;
     font-size: .8em;
 }
+
 .tarjeta-container {
-    min-width: 150px;
+    min-width: 135px;
     height: 400px;
     background-color: #ebedef;
     display: flex;
     flex-direction: column;
+    border-bottom: 3px solid;
     justify-content: flex-end;
 }
+
+.tarjeta-container:nth-child(1),
+.tarjeta-container:nth-child(1) {
+    min-width: 190px;
+}
+
 .tarjeta-body {
     display: flex;
     flex-wrap: wrap;
@@ -71,6 +76,76 @@ body {
 .border-row {
     border-bottom: 1px solid #da536f;
 }
+
+.tarjeta-names-hint {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+
+    text-align: center;
+    font-size: 0.8em;
+    color: #aaa
+}
+
+.tarjeta-container:hover .tarjeta-names-hint {
+    display: none;
+}
+
+.tarjeta-names {
+    font-size: 11px;
+    overflow: scroll;
+    height: 100px;
+    margin: 0px;
+    margin-bottom: auto;
+    overflow-x: hidden;
+    text-align: left;
+    opacity: 0;
+    transition: all 0.2s;
+}
+
+.tarjeta-names:hover {
+    opacity: 1;
+}
+
+.tarjeta-names li {
+    display: block;
+}
+
+.tarjeta-names::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.tarjeta-names::-webkit-scrollbar
+{
+    position: absolute;
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.tarjeta-names:hover::-webkit-scrollbar
+{
+    position: absolute;
+    right: 0;
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+
+.tarjeta-names::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+.tarjeta-container {
+    position: relative;
+}
+
+
 .tarjeta-footer {
     background-color: #ebedef;
     display: flex;
@@ -91,6 +166,7 @@ body {
 .fila {
     margin: auto;
     width: 90%;
+    max-width: 680px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -101,6 +177,38 @@ body {
 .fila a {
     color: black;
 }
+
+.search {
+    width: 100%;
+}
+.search div {
+    text-align: center;
+}
+
+
+.senator {
+    position: relative;
+}
+
+.senator h2 {
+    display: inline-block;
+}
+.senator .changeList {
+    display: block;
+    /*          flex-flow: nowrap;
+       align-items: flex-start; */
+    position: relative;
+    top: -6px;
+    right: inherit;
+    transition: all 0.25s;
+    margin: 0px;
+    padding: 0px;
+}
+.senator .changeList li {opacity: 0; display: block;}
+.senator .changeList:hover {background: white; z-index: 2;}
+.senator .changeList:hover li{opacity: 1;}
+.senator .changeList li:first-of-type {opacity: 1; background: transparent}
+
 @media (max-width: 767px) {
     .fila {
         display: flex;
