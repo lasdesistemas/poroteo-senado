@@ -10,15 +10,15 @@ const Change = ({to}) => (
 )
 
 const Changes = ({changes}) => {
-  if (!changes || changes.length < 2) return null
+  const to = changes[length - 1]
+  if (!changes || changes.length < 2) return <Change {...to} />
 
   const length = changes.length
   const from = changes[length - 2]
-  const to = changes[length - 1]
 
   return (
     <span>
-        cambió de <Change {...from} /> a <Change {...to} /> @{ago(to.timestamp)}
+      cambió de <Change {...from} /> a <Change {...to} /> @{ago(to.timestamp)}
     </span>
   )
 }
