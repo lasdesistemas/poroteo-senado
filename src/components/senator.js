@@ -10,10 +10,10 @@ const Change = ({to}) => (
 )
 
 const Changes = ({changes}) => {
+  const length = changes.length
   const to = changes[length - 1]
   if (!changes || changes.length < 2) return <Change {...to} />
 
-  const length = changes.length
   const from = changes[length - 2]
 
   return (
