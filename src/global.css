@@ -26,6 +26,7 @@ body {
 @media (max-width: 767px) {
     .tarjeta-container {
         min-width: 35vw!important;
+        max-width: 35vw;
         height: 40vh!important;
     }
 }
