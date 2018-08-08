@@ -18,7 +18,6 @@ export default class Search extends React.PureComponent {
       })
     }
     const names = this.props.senators.map(s => ({name: s.Senador.split(',')[0], s}))
-    console.error('name', names)
     return this.setState({
       senators: names
         .filter(n => n.name.match(new RegExp(value, 'i')))
@@ -28,7 +27,6 @@ export default class Search extends React.PureComponent {
 
   render () {
     const { senators } = this.state
-    console.error('==>', senators, this.state.names)
     return (
       <div className='search'>
         <div>
