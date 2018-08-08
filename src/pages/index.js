@@ -156,12 +156,14 @@ export default class extends React.Component {
   refresh (current) {
     console.error('refreshing', current)
     const { previous, allChanges } = this
-    const senators = current.map((s, i) => ({
-      changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
-      ...previous[i],
-      ...s
-    }))
-    const nowChanged = diffVotes(current, previous)
+    const senators = current
+      .filter(s => s.Senador !== "MICHETTI, MARTA GABRIELA")
+      .map((s, i) => ({
+        changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
+        ...previous[i],
+        ...s
+      }))
+    const nowChanged = diffVotes(senators, previous)
     const [lastChanged] = allChanges.slice(-1)
 
     if (nowChanged.length && !arrayEqual(nowChanged, lastChanged)) {
@@ -177,14 +179,14 @@ export default class extends React.Component {
     store.setItem(STORAGE_KEYS.CHECKSUM, this.checksum)
 
     this.setState(state => processState({
-      votes: processVotes(current),
+      votes: processVotes(senators),
       loading: false,
       senators,
       changed
     }))
 
     this.scheduleUpdate()
-    this.previous = current
+    this.previous = senators
     return true
   }
 
