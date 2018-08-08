@@ -115,7 +115,7 @@ export default class extends React.Component {
     }
 
     this.update()
-        .then(refreshed => refreshed || this.refresh(this.previous))
+      .then(refreshed => refreshed || this.refresh(this.previous))
   }
 
   setupSocketIO () {
@@ -144,7 +144,7 @@ export default class extends React.Component {
           this.checksum = results.checksum
           this.setState(processState({votes: results}))
           GSheet(SHEET_IDS.VOTES, 0, 200)
-                                 .then(this.refresh.bind(this))
+            .then(this.refresh.bind(this))
         } else {
           this.setState({loading: false})
           this.scheduleUpdate()
@@ -158,7 +158,7 @@ export default class extends React.Component {
     console.error('refreshing', current)
     const { previous, allChanges } = this
     const senators = current
-      .filter(s => s.Senador !== "MICHETTI, MARTA GABRIELA")
+      .filter(s => s.Senador !== 'MICHETTI, MARTA GABRIELA')
       .map((s, i) => ({
         changes: [{timestamp: Date.now(), to: s.PosicionCON_MODIF}],
         ...previous[i],
@@ -195,24 +195,24 @@ export default class extends React.Component {
     const { votos = [], senators = [], changed = [], broadcasts = [], fecha, loading} = this.state
     return (
       <div className='container'>
-          { loading && <p>Cargando...</p>}
-          {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
-          <Header />
-          <div className='fila'>
-              {votos.map((voto, i) => 
-                <Tarjeta key={voto.titulo} {...voto}
-                         senators={senators.filter(s => s.PosicionCON_MODIF === voto.titulo)}
-                />
-              )}
-          </div>
-          {fecha &&
-           <FechaActualizacion fecha={fecha} />
-          }
-          <Cambios changed={changed} />
-          <Search senators={senators}/>
-          <Links />
-          <Footer />
-          <style>{`
+        { loading && <p>Cargando...</p>}
+        {broadcasts.length ? <div>{broadcasts.slice(-1)}</div> : null}
+        <Header />
+        <div className='fila'>
+          {votos.map((voto, i) =>
+            <Tarjeta key={voto.titulo} {...voto}
+              senators={senators.filter(s => s.PosicionCON_MODIF === voto.titulo)}
+            />
+          )}
+        </div>
+        {fecha &&
+          <FechaActualizacion fecha={fecha} />
+        }
+        <Cambios changed={changed} />
+        <Search senators={senators} />
+        <Links />
+        <Footer />
+        <style>{`
           .container {
                       height: 100vh;
                       flex-wrap: wrap;
@@ -221,7 +221,7 @@ export default class extends React.Component {
                       display:flex;
           }
             `}
-          </style>
+        </style>
       </div>
     )
   }

@@ -70,7 +70,7 @@ export default class Senator extends React.PureComponent {
 
     if (!props.Senador) {
       return <div key='not found'>
-                Senador no encontrado
+          Senador no encontrado
       </div>
     }
 

@@ -10,17 +10,17 @@ export default ({titulo, votos, color, senators}) => {
   const porcentaje = Math.floor((votos / 72) * 100)
   return (
     <div className={`tarjeta-container`} style={{borderColor: colors[color]}}>
-        <div className='tarjeta-header' style={{ color: colors[color]}}>
-            <h3><span>{titulo}</span></h3>
-        </div>
-        <span className='tarjeta-names-hint'>¿ quienes ?</span>
-        <ul className='tarjeta-names'>
-            {senators.map(s => <li key={s.Senador}>{s.Senador.split(',')[0]}</li>)}
-        </ul>
-        <div className={`tarjeta-body ${color}`}
-             style={{height: `${porcentaje}%`, background: colors[color]}}>
-            <h1>{votos}</h1>
-        </div>
+      <div className='tarjeta-header' style={{ color: colors[color]}}>
+        <h3><span>{titulo}</span></h3>
+      </div>
+      <span className='tarjeta-names-hint'>¿ quienes ?</span>
+      <ul className='tarjeta-names'>
+        {senators.map(s => <li key={s.Senador}>{s.Senador.split(',')[0]}</li>)}
+      </ul>
+      <div className={`tarjeta-body ${color}`}
+        style={{height: `${porcentaje}%`, background: colors[color]}}>
+        <h1>{votos}</h1>
+      </div>
     </div>
   )
 }
