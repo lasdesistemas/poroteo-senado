@@ -1,14 +1,16 @@
+import React from 'react'
+
 export default () => (
-  <footer className='footer'> 
+  <footer className='footer'>
     <div>
-        <p>Hecho con ❤ por
-          <a href='https://twitter.com/lasdesistemas' target='blank'>
+      <p>Hecho con ❤ por
+        <a href='https://twitter.com/lasdesistemas' target='blank'>
             [LAS] de sistemas
-          </a>
-        </p>
+      </a>
+      </p>
 
     </div>
-    <style jsx>{`
+    <style>{`
       .footer {
         display: flex;
         background-color: #f8f6e5;

@@ -1,13 +1,15 @@
+import React from 'react'
+
+import lasdesistemas from '../img/logos/lasdesistemas.png'
+
 export default () => (
   <header className='header'>
-    <a href='/'>
-      <img
-        className='lasdesistemas-logo'
-        src='static/assets/img/logos/lasdesistemas.png'
-        alt='[LAS] de sistemas' />
-    </a>
-    <h1 className='title'><span className="main">Votación en senadores</span> <span className="sub">de la ley de aborto legal, seguro y gratuito en Argentina</span></h1>
-    <style jsx>{`
+    <img
+      className='lasdesistemas-logo'
+      src={lasdesistemas}
+      alt='[LAS] de sistemas' />
+    <h1 className='title'><span className='main'>Votación en senadores</span> <span className='sub'>de la ley de aborto legal, seguro y gratuito en Argentina</span></h1>
+    <style>{`
       .header {
         width:100%;
         align-self: flex-start;
@@ -17,6 +19,13 @@ export default () => (
         align-items: center;
         padding: 5px 100px;
         background-color: #f8f6e5;
+      }
+      .back {
+        height: 0;
+        top: -23px;
+        position: relative;
+        left: 15px;
+        display: inherit;
       }
       .lasdesistemas-logo {
         height: 80px;
@@ -42,6 +51,6 @@ export default () => (
           font-size: 20px;
         }
       }
-    `}</style>
+            `}</style>
   </header>
 )

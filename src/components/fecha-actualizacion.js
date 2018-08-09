@@ -1,16 +1,13 @@
-import moment from 'moment-timezone'
-import Links from '../components/links'
-
-moment.locale('es')
+import React from 'react'
+import ago from '../ago'
 
 export default ({ fecha }) => (
   <div className='fecha-wrapper'>
     <p>
       Última actualización:
-      <span>{moment(fecha).fromNow()}</span>
+      <span>{ago(fecha)}</span>
     </p>
-    <Links/>
-    <style jsx>{`
+    <style>{`
       .fecha-wrapper {
         width: 100%;
         text-align: center;
