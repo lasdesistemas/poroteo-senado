@@ -6,7 +6,7 @@ export default () => (
         src='static/assets/img/logos/lasdesistemas.png'
         alt='[LAS] de sistemas' />
     </a>
-    <h1 className='title'><span className="main">Votación en senadores</span> <span className="sub">de la ley de aborto legal, seguro y gratuito en Argentina</span></h1>
+    <h1 className='title'><span className="main">Votación en senadores 2020</span> <span className="sub">de la ley de aborto legal, seguro y gratuito en Argentina</span></h1>
     <style jsx>{`
       .header {
         width:100%;
