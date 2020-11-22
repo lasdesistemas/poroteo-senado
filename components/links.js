@@ -9,7 +9,7 @@ export default () => (
           src='static/assets/img/logos/activa2.png'
           alt='Activa el Congreso' />
       </a>
-      <a href='https://docs.google.com/spreadsheets/d/1mOiTT3JIdQPxVLTQ-a3OivQqE15oLvdWMv6I_DpMZak/edit#gid=1248922160'>
+      <a href='https://docs.google.com/spreadsheets/d/1TUTag7Majqhn5noRLLMUJ6SFJ0Phwlo-Oc1T59uSZCE/edit#gid=219162967'>
         <img
           className='ecofeminita-logo'
           src='static/assets/img/logos/ecofeminita.png'
