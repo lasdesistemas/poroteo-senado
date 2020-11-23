@@ -1,13 +1,34 @@
-## Poroteo Senado
+# Poroteo Senado
 
-### ¿Cómo levantar el ambiente?
+## ¿Cómo levantar el ambiente?
 `npm install`
 
 `npm run dev`
 
- ### ¿Cómo generar un HTML estático para el deploy?
+## ¿Cómo generar un HTML estático para el deploy?
 Correr el comando `npm run export` y se creará la carpeta `/out` que es la que debés usar para deployar. 
-Podés utilizar [now](https://zeit.co/now) para hacer un deploy para testear. Instalalo corriendo `npm install -g now` y luego, en la carpeta out, corré `now --public`. Now te avisará cuando termine el deploy y generará un link y listo!
+Podés utilizar [heroku](https://heroku.com) para hacer un deploy.
+
+### Pre requisitos
+0. Tener creado el proyecto *poroteosenado* en heroku
+1. Se debe tener instalado el [cliente de heroku](https://devcenter.heroku.com/articles/heroku-cli)
+2. Loguearse ejecutando el comando
+```bash
+heroku login
+```
+3. Asociar repositorio de git a heroku
+```bash
+heroku git:remote -a poroteosenado
+```
+
+### Deploy en heroku
+```bash
+git push heroku master
+```
+### Ver los logs
+```bash
+heroku logs --tail
+```
 
 
 
