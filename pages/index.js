@@ -16,7 +16,7 @@ export default class extends React.Component {
 
     }
 
-    axios.get('https://contador-de-votos.herokuapp.com/')
+    axios.get('https://contador-de-votos.herokuapp.com/senadores')
     .then(response => {
       console.log("Recuperando datos..")
       this.setState( 
