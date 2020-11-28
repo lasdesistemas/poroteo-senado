@@ -1,6 +1,6 @@
 export default () => (
   <header className='header'>
-    <a href='/'>
+    <a href='https://lasdesistemas.org/'>
       <img
         className='lasdesistemas-logo'
         src='static/assets/img/logos/lasdesistemas.png'
